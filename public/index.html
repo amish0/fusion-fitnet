@@ -50,22 +50,68 @@
   <p>We help you transform your body and mindset.</p>
 </section>
 
-<section id="contact">
-  <h2>Contact Us</h2>
-  <form action="contact.php" method="POST">
-    <input type="text" name="name" placeholder="Name" required><br><br>
-    <input type="email" name="email" placeholder="Email" required><br><br>
-    <textarea name="message" placeholder="Message" required></textarea><br><br>
-    <button class="btn">Send</button>
-  </form>
+<section id="contact" class="contact-section">
+  <h2>Get in Touch</h2>
+  <p class="contact-subtitle">
+    Have questions? Want to start your fitness journey?  
+    We’d love to hear from you.
+  </p>
+
+  <div class="contact-container">
+
+    <!-- Contact Info -->
+    <div class="contact-info">
+      <div class="info-card">
+        <span>📧</span>
+        <h3>Email</h3>
+        <p>ayanain@fusionfitnet.com</p>
+      </div>
+
+      <div class="info-card">
+        <span>📞</span>
+        <h3>Phone</h3>
+        <p>Coming Soon</p>
+      </div>
+
+      <div class="info-card">
+        <span>📍</span>
+        <h3>Location</h3>
+        <p>India</p>
+      </div>
+    </div>
+
+    <!-- Contact Form -->
+    <div class="contact-form">
+      <form action="contact.php" method="POST">
+        <div class="form-group">
+          <input type="text" name="name" required>
+          <label>Your Name</label>
+        </div>
+
+        <div class="form-group">
+          <input type="email" name="email" required>
+          <label>Email Address</label>
+        </div>
+
+        <div class="form-group">
+          <textarea name="message" rows="5" required></textarea>
+          <label>Your Message</label>
+        </div>
+
+        <button type="submit" class="btn full">Send Message</button>
+      </form>
+    </div>
+
+  </div>
 </section>
+
 
 <footer>
   © 2025 Fusion FitNet
 </footer>
 
 <!-- WhatsApp -->
-<a class="whatsapp" href="https://wa.me/91XXXXXXXXXX" target="_blank">💬</a>
+<a class="whatsapp" href="https://wa.me/919147425114" target="_blank">💬</a>
 
 <!-- Dark Mode -->
 <div class="toggle" onclick="toggleDarkMode()">🌙</div>
