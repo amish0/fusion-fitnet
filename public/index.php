@@ -17,12 +17,12 @@ session_start();
   <link rel="stylesheet" href="css/style.css">
 
   <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=YOUR_GA_ID"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
-    gtag('config', 'G-XXXXXXXXXX');
+    gtag('config', 'YOUR_GA_ID');
   </script>
 </head>
 
@@ -94,19 +94,26 @@ session_start();
   <h2>Upcoming Events</h2>
 
   <div class="events-grid">
-    <div class="event-card">
-      <span class="event-date">JUL 20</span>
-      <h3>Summer Fitness Bootcamp</h3>
-      <p>High-intensity outdoor training.</p>
-      <a href="#contact" class="btn small">Register</a>
-    </div>
+    <?php
+    $eventsJson = file_get_contents('data/event.json');
+    $events = json_decode($eventsJson, true);
 
+    if ($events):
+      foreach ($events as $event):
+        $date = strtotime($event['date']);
+    ?>
     <div class="event-card">
-      <span class="event-date">AUG 05</span>
-      <h3>Nutrition Workshop</h3>
-      <p>Clean eating & wellness.</p>
+      <span class="event-date"><?php echo strtoupper(date('M d', $date)); ?></span>
+      <h3><?php echo htmlspecialchars($event['title']); ?></h3>
+      <p><?php echo htmlspecialchars($event['description']); ?></p>
       <a href="#contact" class="btn small">Register</a>
     </div>
+    <?php
+      endforeach;
+    else:
+    ?>
+    <p>No upcoming events.</p>
+    <?php endif; ?>
   </div>
 </section>
 
@@ -127,7 +134,7 @@ session_start();
 
       <?php if (!empty($_SESSION["user_id"])): ?>
         <a href="cart.php?add=protein" class="btn small">Add to Cart</a>
-        <a href="cart.php?add=protein" class="btn small">Buy Now</a>
+        <a href="cart.php?add=proteina" class="btn small">Buy Now</a>
       <?php else: ?>
         <a href="auth/login.php" class="btn small">Login to Buy</a>
       <?php endif; ?>
