@@ -56,3 +56,17 @@ gallery && gallery.addEventListener('mousemove', (e) => {
   const walk = (x - startX) * 2; // scroll-fast
   gallery.scrollLeft = scrollLeft - walk;
 });
+
+// Cart functionality
+let cart = [];
+const cartCountElement = document.getElementById('cart-count');
+
+function addToCart(productName) {
+  cart.push(productName);
+  updateCartCount();
+  console.log(cart); // For debugging
+}
+
+function updateCartCount() {
+  cartCountElement.innerText = cart.length;
+}

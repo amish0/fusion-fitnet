@@ -43,10 +43,13 @@
   <div class="menu-toggle" onclick="toggleMenu()">☰</div>
 
   <div class="nav-links" id="navLinks">
-    <a href="#features" onclick="closeMenu()">Features</a>
-    <a href="#gallery" onclick="closeMenu()">Gallery</a>
-    <a href="#events" onclick="closeMenu()">Events</a>
-    <a href="#contact" onclick="closeMenu()">Contact</a>
+    <a href="#features">Features</a>
+    <a href="#gallery">Gallery</a>
+    <a href="#events">Events</a>
+    <a href="#products">Products</a>
+    <a href="#contact">Contact</a>
+    <a href="login.html" class="btn-login">Login</a>
+    <a href="signup.html" class="btn-signup">Sign Up</a>
   </div>
 </nav>
 
@@ -108,6 +111,41 @@
   </div>
 </section>
 
+<section id="products">
+  <h2>Our Products</h2>
+  <p class="section-subtitle">
+    High-quality gear and supplements to support your fitness journey.
+  </p>
+  <div class="product-grid">
+    <div class="product-card">
+      <img src="https://images.unsplash.com/photo-1598266663439-2056e635781a" alt="Product 1">
+      <h3>Protein Powder</h3>
+      <p class="price">$49.99</p>
+      <div class="product-buttons">
+        <button class="btn small" onclick="addToCart('Protein Powder')">Add to Cart</button>
+        <a href="#contact" class="btn small">Buy Now</a>
+      </div>
+    </div>
+    <div class="product-card">
+      <img src="https://images.unsplash.com/photo-1549476464-37392241ea34" alt="Product 2">
+      <h3>Resistance Bands</h3>
+      <p class="price">$24.99</p>
+      <div class="product-buttons">
+        <button class="btn small" onclick="addToCart('Resistance Bands')">Add to Cart</button>
+        <a href="#contact" class="btn small">Buy Now</a>
+      </div>
+    </div>
+    <div class="product-card">
+      <img src="https://images.unsplash.com/photo-1579758629938-03607ccdbaba" alt="Product 3">
+      <h3>Yoga Mat</h3>
+      <p class="price">$39.99</p>
+      <div class="product-buttons">
+        <button class="btn small" onclick="addToCart('Yoga Mat')">Add to Cart</button>
+        <a href="#contact" class="btn small">Buy Now</a>
+      </div>
+    </div>
+  </div>
+</section>
 
 <section id="about">
   <h2>About Fusion FitNet</h2>
