@@ -1,3 +1,23 @@
+<?php
+require_once "../config/db.php";
+
+if ($_SERVER["REQUEST_METHOD"] === "POST") {
+    $name  = trim($_POST["name"]);
+    $email = trim($_POST["email"]);
+    $pass  = password_hash($_POST["password"], PASSWORD_DEFAULT);
+
+    $stmt = $conn->prepare("INSERT INTO users (name, email, password) VALUES (?, ?, ?)");
+    $stmt->bind_param("sss", $name, $email, $pass);
+
+    if ($stmt->execute()) {
+        header("Location: login.php?success=1");
+        exit;
+    } else {
+        $error = "Email already registered!";
+    }
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,7 +31,7 @@
   <div class="auth-container">
     <div class="auth-box">
       <h2>Sign Up</h2>
-      <form action="#" method="POST">
+      <form action="signup.php" method="POST">
         <div class="form-group">
           <input type="text" name="name" required>
           <label>Your Name</label>

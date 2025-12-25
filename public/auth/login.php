@@ -1,3 +1,30 @@
+<?php
+session_start();
+require_once "../config/db.php";
+
+if ($_SERVER["REQUEST_METHOD"] === "POST") {
+    $email = trim($_POST["email"]);
+    $pass  = $_POST["password"];
+
+    $stmt = $conn->prepare("SELECT id, name, password FROM users WHERE email=?");
+    $stmt->bind_param("s", $email);
+    $stmt->execute();
+    $result = $stmt->get_result();
+
+    if ($result->num_rows === 1) {
+        $user = $result->fetch_assoc();
+
+        if (password_verify($pass, $user["password"])) {
+            $_SESSION["user_id"] = $user["id"];
+            $_SESSION["name"] = $user["name"];
+            header("Location: ../dashboard.php");
+            exit;
+        }
+    }
+    $error = "Invalid email or password";
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,7 +38,7 @@
   <div class="auth-container">
     <div class="auth-box">
       <h2>Login</h2>
-      <form action="#" method="POST">
+      <form action="login.php" method="POST">
         <div class="form-group">
           <input type="email" name="email" required>
           <label>Email Address</label>
