@@ -452,3 +452,114 @@ button, a {
   -webkit-tap-highlight-color: transparent;
 }
 
+/* Swipe Gallery */
+.swipe-gallery {
+  display: flex;
+  overflow-x: auto;
+  gap: 15px;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+}
+
+.swipe-gallery img {
+  width: 85%;
+  max-width: 320px;
+  border-radius: 12px;
+  scroll-snap-align: center;
+  flex-shrink: 0;
+}
+
+.swipe-gallery::-webkit-scrollbar {
+  display: none;
+}
+
+/* Bottom Navigation */
+.bottom-nav {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .bottom-nav {
+    display: flex;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: #111;
+    justify-content: space-around;
+    padding: 12px 0;
+    z-index: 1000;
+  }
+
+  .bottom-nav a {
+    color: white;
+    font-size: 1.4rem;
+    text-decoration: none;
+  }
+
+  body {
+    padding-bottom: 60px;
+  }
+}
+
+/* Sticky Call/WhatsApp */
+.sticky-contact {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .sticky-contact {
+    display: flex;
+    position: fixed;
+    bottom: 60px;
+    left: 10px;
+    right: 10px;
+    gap: 10px;
+    z-index: 1000;
+  }
+
+  .sticky-contact a {
+    flex: 1;
+    text-align: center;
+    padding: 14px;
+    border-radius: 30px;
+    font-weight: bold;
+    color: white;
+    text-decoration: none;
+  }
+
+  .call-btn {
+    background: #007bff;
+  }
+
+  .wa-btn {
+    background: #25D366;
+  }
+}
+
+/* Mobile CTA */
+.mobile-cta {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .mobile-cta {
+    display: block;
+    background: linear-gradient(135deg, #ff416c, #ff4b2b);
+    color: white;
+    text-align: center;
+    padding: 50px 20px;
+  }
+
+  .mobile-cta a {
+    display: inline-block;
+    margin-top: 15px;
+    background: white;
+    color: #ff4b2b;
+    padding: 12px 30px;
+    border-radius: 25px;
+    font-weight: bold;
+    text-decoration: none;
+  }
+}
+
