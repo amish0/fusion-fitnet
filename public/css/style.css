@@ -257,3 +257,198 @@ body.dark .form-group label {
   text-align: center;
 }
 
+/* =========================
+   SHARED
+========================= */
+.section-subtitle {
+  max-width: 600px;
+  margin: 0 auto 40px;
+  color: #666;
+}
+
+body.dark .section-subtitle {
+  color: #bbb;
+}
+
+/* =========================
+   GALLERY
+========================= */
+.gallery-section {
+  background: #f7f7f7;
+}
+
+body.dark .gallery-section {
+  background: #181818;
+}
+
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 15px;
+  max-width: 1100px;
+  margin: auto;
+}
+
+.gallery-grid img {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  border-radius: 15px;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.gallery-grid img:hover {
+  transform: scale(1.05);
+  box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+}
+
+/* =========================
+   EVENTS
+========================= */
+.events-section {
+  background: #ffffff;
+}
+
+body.dark .events-section {
+  background: #121212;
+}
+
+.events-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 30px;
+  max-width: 1000px;
+  margin: auto;
+}
+
+.event-card {
+  background: white;
+  padding: 30px;
+  border-radius: 20px;
+  box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+  position: relative;
+  transition: transform 0.3s;
+}
+
+body.dark .event-card {
+  background: #1e1e1e;
+}
+
+.event-card:hover {
+  transform: translateY(-8px);
+}
+
+.event-date {
+  position: absolute;
+  top: -15px;
+  right: 20px;
+  background: linear-gradient(90deg, var(--primary), var(--secondary));
+  color: white;
+  padding: 8px 14px;
+  border-radius: 30px;
+  font-size: 0.8rem;
+}
+
+.btn.small {
+  padding: 8px 20px;
+  font-size: 0.9rem;
+  margin-top: 10px;
+}
+
+/* =========================
+   MOBILE RESPONSIVE
+========================= */
+
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #111;
+  padding: 15px 20px;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.logo {
+  color: white;
+  font-weight: bold;
+  font-size: 1.2rem;
+}
+
+.menu-toggle {
+  display: none;
+  color: white;
+  font-size: 1.8rem;
+  cursor: pointer;
+}
+
+.nav-links a {
+  color: white;
+  margin-left: 20px;
+}
+
+/* MOBILE MENU */
+@media (max-width: 768px) {
+
+  .menu-toggle {
+    display: block;
+  }
+
+  .nav-links {
+    position: absolute;
+    top: 60px;
+    left: 0;
+    right: 0;
+    background: #111;
+    display: none;
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .nav-links.active {
+    display: flex;
+  }
+
+  .nav-links a {
+    padding: 15px;
+    border-top: 1px solid #222;
+    margin: 0;
+  }
+
+  header h1 {
+    font-size: 1.8rem;
+  }
+
+  section {
+    padding: 40px 15px;
+  }
+
+  .features,
+  .events-grid,
+  .gallery-grid,
+  .contact-container {
+    grid-template-columns: 1fr !important;
+    flex-direction: column;
+  }
+
+  .feature-card,
+  .event-card {
+    width: 100%;
+  }
+
+  .whatsapp {
+    bottom: 15px;
+    right: 15px;
+  }
+
+  .toggle {
+    bottom: 15px;
+    left: 15px;
+  }
+}
+
+button, a {
+  -webkit-tap-highlight-color: transparent;
+}
+

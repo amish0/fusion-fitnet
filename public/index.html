@@ -30,11 +30,19 @@
   <p class="tagline">Fitness • Strength • Transformation</p>
 </header>
 
-<nav>
-  <a href="#features">Features</a>
-  <a href="#about">About</a>
-  <a href="#contact">Contact</a>
+<nav class="navbar">
+  <div class="logo">Fusion FitNet</div>
+
+  <div class="menu-toggle" onclick="toggleMenu()">☰</div>
+
+  <div class="nav-links" id="navLinks">
+    <a href="#features" onclick="closeMenu()">Features</a>
+    <a href="#gallery" onclick="closeMenu()">Gallery</a>
+    <a href="#events" onclick="closeMenu()">Events</a>
+    <a href="#contact" onclick="closeMenu()">Contact</a>
+  </div>
 </nav>
+
 
 <section id="features">
   <h2>Why Choose Us?</h2>
@@ -44,6 +52,55 @@
     <div class="feature-card">Community Support</div>
   </div>
 </section>
+
+<section id="gallery" class="gallery-section">
+  <h2>Our Gallery</h2>
+  <p class="section-subtitle">
+    A glimpse of our workouts, transformations, and energy.
+  </p>
+
+  <div class="gallery-grid">
+    <img src="https://images.unsplash.com/photo-1558611848-73f7eb4001a1" alt="Workout Training">
+    <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b" alt="Fitness Session">
+    <img src="https://images.unsplash.com/photo-1546483875-ad9014c88eba" alt="Strength Training">
+    <img src="https://images.unsplash.com/photo-1599058917212-d750089bc07e" alt="Gym Workout">
+    <img src="https://images.unsplash.com/photo-1517836357463-d25dfeac3438" alt="Personal Training">
+    <img src="https://images.unsplash.com/photo-1576678927484-cc907957088c" alt="Group Fitness">
+  </div>
+</section>
+
+<section id="events" class="events-section">
+  <h2>Upcoming Events</h2>
+  <p class="section-subtitle">
+    Join our workshops, bootcamps, and fitness challenges.
+  </p>
+
+  <div class="events-grid">
+
+    <div class="event-card">
+      <span class="event-date">JUL 20</span>
+      <h3>Summer Fitness Bootcamp</h3>
+      <p>High-intensity outdoor training to boost strength and endurance.</p>
+      <a href="#contact" class="btn small">Register</a>
+    </div>
+
+    <div class="event-card">
+      <span class="event-date">AUG 05</span>
+      <h3>Nutrition & Wellness Workshop</h3>
+      <p>Learn clean eating, meal planning, and lifestyle balance.</p>
+      <a href="#contact" class="btn small">Register</a>
+    </div>
+
+    <div class="event-card">
+      <span class="event-date">SEP 12</span>
+      <h3>Transformation Challenge</h3>
+      <p>12-week guided challenge with coaching and progress tracking.</p>
+      <a href="#contact" class="btn small">Join Challenge</a>
+    </div>
+
+  </div>
+</section>
+
 
 <section id="about">
   <h2>About Fusion FitNet</h2>
