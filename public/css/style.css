@@ -1,0 +1,129 @@
+:root {
+  --primary: #ff5e14;
+  --secondary: #ff9c42;
+  --bg: #ffffff;
+  --text: #333333;
+  --dark-bg: #121212;
+  --dark-text: #eaeaea;
+}
+
+body.dark {
+  --bg: var(--dark-bg);
+  --text: var(--dark-text);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+}
+
+a { text-decoration: none; color: inherit; }
+
+header {
+  background: url('https://images.unsplash.com/photo-1571019613914-85f342c38aa6') center/cover;
+  color: white;
+  padding: 30px;
+  position: relative;
+  text-align: center;
+}
+
+header::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.5);
+}
+
+header h1, .tagline {
+  position: relative;
+  z-index: 1;
+}
+
+nav {
+  background: #111;
+  display: flex;
+  justify-content: center;
+  position: sticky;
+  top: 0;
+}
+
+nav a {
+  color: white;
+  padding: 15px 25px;
+}
+
+nav a:hover {
+  background: var(--primary);
+  border-radius: 5px;
+}
+
+section {
+  padding: 60px 20px;
+  max-width: 1000px;
+  margin: auto;
+  text-align: center;
+}
+
+.btn {
+  background: linear-gradient(90deg, var(--primary), var(--secondary));
+  color: white;
+  padding: 12px 30px;
+  border-radius: 50px;
+  display: inline-block;
+  margin-top: 10px;
+}
+
+.features {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.feature-card {
+  flex: 1 1 250px;
+  background: white;
+  padding: 20px;
+  border-radius: 15px;
+}
+
+body.dark .feature-card {
+  background: #1e1e1e;
+}
+
+footer {
+  background: #111;
+  color: white;
+  text-align: center;
+  padding: 20px;
+}
+
+/* WhatsApp Button */
+.whatsapp {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: #25d366;
+  color: white;
+  padding: 15px;
+  border-radius: 50%;
+  font-size: 20px;
+}
+
+/* Dark mode toggle */
+.toggle {
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  padding: 10px 15px;
+  background: #111;
+  color: white;
+  cursor: pointer;
+}
