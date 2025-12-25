@@ -1,5 +1,16 @@
 <?php
 session_start();
+
+/* Unset all session variables */
+$_SESSION = [];
+
+/* Destroy the session */
 session_destroy();
-header("Location: login.php");
+
+/* Prevent browser caching */
+header("Cache-Control: no-store, no-cache, must-revalidate, max-age=0");
+header("Pragma: no-cache");
+
+/* Redirect to login page */
+header("Location: login.php?logout=1");
 exit;

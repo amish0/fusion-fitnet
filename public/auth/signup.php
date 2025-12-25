@@ -24,31 +24,49 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Sign Up | Fusion FitNet</title>
-  <link rel="stylesheet" href="css/style.css">
-  <link rel="stylesheet" href="css/auth.css">
+
+  <!-- FIXED PATHS -->
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/auth.css">
 </head>
 <body>
+
   <div class="auth-container">
     <div class="auth-box">
       <h2>Sign Up</h2>
+
+      <?php if (!empty($error)): ?>
+        <p style="color:red; margin-bottom:10px;">
+          <?= htmlspecialchars($error) ?>
+        </p>
+      <?php endif; ?>
+
       <form action="signup.php" method="POST">
         <div class="form-group">
           <input type="text" name="name" required>
           <label>Your Name</label>
         </div>
+
         <div class="form-group">
           <input type="email" name="email" required>
           <label>Email Address</label>
         </div>
+
         <div class="form-group">
           <input type="password" name="password" required>
           <label>Password</label>
         </div>
+
         <button type="submit" class="btn full">Sign Up</button>
       </form>
-      <p class="auth-switch">Already have an account? <a href="login.html">Login</a></p>
+
+      <p class="auth-switch">
+        Already have an account?
+        <a href="login.php">Login</a>
+      </p>
     </div>
   </div>
-  <script src="js/main.js"></script>
+
+  <script src="../js/main.js"></script>
 </body>
 </html>

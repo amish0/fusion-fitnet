@@ -6,12 +6,12 @@ session_start();
 <head>
   <meta charset="utf-8">
   <title>Fusion FitNet | Fitness & Strength Training</title>
-  <meta name="description" content="Fusion FitNet – Personalized fitness, expert coaches, and transformation programs.">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <!-- SEO -->
+  <meta name="description" content="Fusion FitNet – Personalized fitness, expert coaches, and transformation programs.">
   <meta name="keywords" content="fitness, gym, personal training, strength, wellness">
   <meta name="author" content="Fusion FitNet">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <!-- CSS -->
   <link rel="stylesheet" href="css/style.css">
@@ -33,7 +33,7 @@ session_start();
   <a href="#features">🏠</a>
   <a href="#gallery">🖼️</a>
   <a href="#events">📅</a>
-  <?php if (!isset($_SESSION["user_id"])): ?>
+  <?php if (empty($_SESSION["user_id"])): ?>
     <a href="auth/login.php">🔐</a>
   <?php else: ?>
     <a href="dashboard.php">👤</a>
@@ -56,7 +56,7 @@ session_start();
     <a href="#products">Products</a>
     <a href="#contact">Contact</a>
 
-    <?php if (isset($_SESSION["user_id"])): ?>
+    <?php if (!empty($_SESSION["user_id"])): ?>
       <a href="cart.php">🛒 Cart</a>
       <a href="dashboard.php" class="btn-login">My Account</a>
       <a href="auth/logout.php" class="btn-signup">Logout</a>
@@ -78,19 +78,21 @@ session_start();
 
 <section id="gallery" class="gallery-section">
   <h2>Our Gallery</h2>
-  <p class="section-subtitle">A glimpse of our workouts, transformations, and energy.</p>
+  <p class="section-subtitle">A glimpse of our workouts and transformations.</p>
+
   <div class="gallery-grid">
-    <img src="images/g1.jpg" alt="">
-    <img src="images/g2.jpg" alt="">
-    <img src="images/g3.jpg" alt="">
-    <img src="images/g4.jpg" alt="">
-    <img src="images/g5.jpg" alt="">
-    <img src="images/g6.jpg" alt="">
+    <img src="images/g1.jpg" loading="lazy" alt="Fusion FitNet workout session">
+    <img src="images/g2.jpg" loading="lazy" alt="Strength training at Fusion FitNet">
+    <img src="images/g3.jpg" loading="lazy" alt="Personal training session">
+    <img src="images/g4.jpg" loading="lazy" alt="Group fitness class">
+    <img src="images/g5.jpg" loading="lazy" alt="Transformation journey">
+    <img src="images/g6.jpg" loading="lazy" alt="Fitness community event">
   </div>
 </section>
 
 <section id="events" class="events-section">
   <h2>Upcoming Events</h2>
+
   <div class="events-grid">
     <div class="event-card">
       <span class="event-date">JUL 20</span>
@@ -98,6 +100,7 @@ session_start();
       <p>High-intensity outdoor training.</p>
       <a href="#contact" class="btn small">Register</a>
     </div>
+
     <div class="event-card">
       <span class="event-date">AUG 05</span>
       <h3>Nutrition Workshop</h3>
@@ -110,17 +113,21 @@ session_start();
 <!-- PRODUCTS -->
 <section id="products">
   <h2>Our Products</h2>
+
   <div class="product-grid">
 
     <!-- Protein -->
     <div class="product-card">
-      <img src="https://images.unsplash.com/photo-1598266663439-2056e635781a" alt="Protein Powder">
+      <img src="https://images.unsplash.com/photo-1598266663439-2056e635781a"
+           loading="lazy"
+           alt="Protein Powder supplement">
+
       <h3>Protein Powder</h3>
       <p class="price">$49.99</p>
 
-      <?php if (isset($_SESSION["user_id"])): ?>
+      <?php if (!empty($_SESSION["user_id"])): ?>
         <a href="cart.php?add=protein" class="btn small">Add to Cart</a>
-        <a href="checkout.php?product=protein" class="btn small">Buy Now</a>
+        <a href="cart.php?add=protein" class="btn small">Buy Now</a>
       <?php else: ?>
         <a href="auth/login.php" class="btn small">Login to Buy</a>
       <?php endif; ?>
@@ -128,13 +135,16 @@ session_start();
 
     <!-- Bands -->
     <div class="product-card">
-      <img src="https://images.unsplash.com/photo-1549476464-37392241ea34" alt="Resistance Bands">
+      <img src="https://images.unsplash.com/photo-1549476464-37392241ea34"
+           loading="lazy"
+           alt="Resistance bands for workout">
+
       <h3>Resistance Bands</h3>
       <p class="price">$24.99</p>
 
-      <?php if (isset($_SESSION["user_id"])): ?>
+      <?php if (!empty($_SESSION["user_id"])): ?>
         <a href="cart.php?add=bands" class="btn small">Add to Cart</a>
-        <a href="checkout.php?product=bands" class="btn small">Buy Now</a>
+        <a href="cart.php?add=bands" class="btn small">Buy Now</a>
       <?php else: ?>
         <a href="auth/login.php" class="btn small">Login to Buy</a>
       <?php endif; ?>
@@ -142,13 +152,16 @@ session_start();
 
     <!-- Yoga Mat -->
     <div class="product-card">
-      <img src="https://images.unsplash.com/photo-1579758629938-03607ccdbaba" alt="Yoga Mat">
+      <img src="https://images.unsplash.com/photo-1579758629938-03607ccdbaba"
+           loading="lazy"
+           alt="Yoga mat for home workout">
+
       <h3>Yoga Mat</h3>
       <p class="price">$39.99</p>
 
-      <?php if (isset($_SESSION["user_id"])): ?>
-        <a href="cart.php?add=mat" class="btn small">Add to Cart</a>
-        <a href="checkout.php?product=mat" class="btn small">Buy Now</a>
+      <?php if (!empty($_SESSION["user_id"])): ?>
+        <a href="cart.php?add=yoga-mat" class="btn small">Add to Cart</a>
+        <a href="cart.php?add=yoga-mat" class="btn small">Buy Now</a>
       <?php else: ?>
         <a href="auth/login.php" class="btn small">Login to Buy</a>
       <?php endif; ?>
@@ -157,7 +170,9 @@ session_start();
   </div>
 </section>
 
-<footer>© 2025 Fusion FitNet</footer>
+<footer>
+  © 2025 Fusion FitNet
+</footer>
 
 <script src="js/main.js"></script>
 </body>
