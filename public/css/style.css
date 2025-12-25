@@ -554,28 +554,37 @@ button, a {
 }
 
 /* Mobile CTA */
-.mobile-cta {
-  display: none;
+@media (min-width: 769px) {
+  .mobile-cta {
+    display: none;
+  }
 }
 
-@media (max-width: 768px) {
+.mobile-cta {
+  background: linear-gradient(135deg, #ff416c, #ff4b2b);
+  color: white;
+  text-align: center;
+  padding: 50px 20px;
+}
+
+.mobile-cta a {
+  display: inline-block;
+  margin-top: 15px;
+  background: white;
+  color: #ff4b2b;
+  padding: 12px 30px;
+  border-radius: 25px;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+@media (max-width: 480px) {
   .mobile-cta {
-    display: block;
-    background: linear-gradient(135deg, #ff416c, #ff4b2b);
-    color: white;
-    text-align: center;
-    padding: 50px 20px;
+    padding: 30px 15px;
   }
 
-  .mobile-cta a {
-    display: inline-block;
-    margin-top: 15px;
-    background: white;
-    color: #ff4b2b;
-    padding: 12px 30px;
-    border-radius: 25px;
-    font-weight: bold;
-    text-decoration: none;
+  .mobile-cta h2 {
+    font-size: 1.5rem;
   }
 }
 
