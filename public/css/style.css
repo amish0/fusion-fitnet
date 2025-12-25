@@ -1,3 +1,9 @@
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
 :root {
   --primary: #ff5e14;
   --secondary: #ff9c42;
@@ -388,9 +394,16 @@ body.dark .event-card {
   margin-left: 20px;
 }
 
+/* ✅ ADD THIS HERE */
+section {
+  overflow-x: hidden;
+}
+
 /* MOBILE MENU */
 @media (max-width: 768px) {
-
+  img {
+    max-width: 100%;
+  }
   .menu-toggle {
     display: block;
   }
@@ -462,12 +475,15 @@ button, a {
 }
 
 .swipe-gallery img {
-  width: 85%;
-  max-width: 320px;
+  width: 90vw;             /* responsive to screen width */
+  max-width: 320px;        /* prevents huge images */
+  height: auto;
   border-radius: 12px;
   scroll-snap-align: center;
   flex-shrink: 0;
+  object-fit: cover;
 }
+
 
 .swipe-gallery::-webkit-scrollbar {
   display: none;
