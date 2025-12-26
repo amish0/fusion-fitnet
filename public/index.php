@@ -82,17 +82,17 @@ session_start();
     <div class="feature-card">
       <h3>Personalized Training</h3>
       <p>Custom workouts and plans designed to match your fitness level and goals.</p>
-      <a href="#subscribe" class="btn">Join Now</a>
+      <a href="#contact" class="btn">Join Now</a>
     </div>
     <div class="feature-card">
       <h3>Expert Coaches</h3>
       <p>Learn from certified trainers with years of experience in strength and wellness.</p>
-      <a href="#subscribe" class="btn">Meet Our Coaches</a>
+      <a href="#contact" class="btn">Meet Our Coaches</a>
     </div>
     <div class="feature-card">
       <h3>Community Support</h3>
       <p>Join a motivated community that keeps you accountable and inspired every day.</p>
-      <a href="#subscribe" class="btn">Get Started</a>
+      <a href="#contact" class="btn">Get Started</a>
     </div>
   </div>
 </section>
