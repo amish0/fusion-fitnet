@@ -67,15 +67,35 @@ session_start();
   </div>
 </nav>
 
-<section id="features">
+<!-- <section id="features">
   <h2>Why Choose Us?</h2>
   <div class="features">
     <div class="feature-card">Personalized Training</div>
     <div class="feature-card">Expert Coaches</div>
     <div class="feature-card">Community Support</div>
   </div>
-</section>
+</section> -->
 
+<section id="features">
+  <h2>Why Choose Fusion FitNet?</h2>
+  <div class="features">
+    <div class="feature-card">
+      <h3>Personalized Training</h3>
+      <p>Custom workouts and plans designed to match your fitness level and goals.</p>
+      <a href="#subscribe" class="btn">Join Now</a>
+    </div>
+    <div class="feature-card">
+      <h3>Expert Coaches</h3>
+      <p>Learn from certified trainers with years of experience in strength and wellness.</p>
+      <a href="#subscribe" class="btn">Meet Our Coaches</a>
+    </div>
+    <div class="feature-card">
+      <h3>Community Support</h3>
+      <p>Join a motivated community that keeps you accountable and inspired every day.</p>
+      <a href="#subscribe" class="btn">Get Started</a>
+    </div>
+  </div>
+</section>
 <section id="gallery" class="gallery-section">
   <h2>Our Gallery</h2>
   <p class="section-subtitle">A glimpse of our workouts and transformations.</p>
