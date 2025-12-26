@@ -177,6 +177,86 @@ session_start();
   </div>
 </section>
 
+
+<section id="contact" class="contact-section">
+  <h2>Get in Touch</h2>
+  <p class="contact-subtitle">
+    Have questions? Want to start your fitness journey?  
+    We’d love to hear from you.
+  </p>
+
+  <div class="contact-container">
+
+    <!-- Contact Info -->
+    <div class="contact-info">
+      <div class="info-card">
+        <span>📧</span>
+        <h3>Email</h3>
+        <p>ayanain@fusionfitnet.com</p>
+      </div>
+
+      <div class="info-card">
+        <span>📞</span>
+        <h3>Phone</h3>
+        <p>+919147425114</p>
+      </div>
+
+      <div class="info-card">
+        <span>📍</span>
+        <h3>Location</h3>
+        <p>India</p>
+      </div>
+    </div>
+
+    <!-- Contact Form -->
+    <div class="contact-form">
+      <form action="contact.php" method="POST">
+        <div class="form-group">
+          <input type="text" name="name" required>
+          <label>Your Name</label>
+        </div>
+
+        <div class="form-group">
+          <input type="email" name="email" required>
+          <label>Email Address</label>
+        </div>
+
+        <div class="form-group">
+          <textarea name="message" rows="5" required></textarea>
+          <label>Your Message</label>
+        </div>
+
+        <button type="submit" class="btn full">Send Message</button>
+      </form>
+    </div>
+
+  </div>
+</section>
+
+<!-- <div class="sticky-contact">
+  <a href="tel:+919147425114" class="call-btn">📞 Call</a>
+  <a href="https://wa.me/919147425114" target="_blank" class="wa-btn">💬 WhatsApp</a>
+</div> -->
+
+<section class="mobile-cta">
+  <h2>Start Your Fitness Journey Today</h2>
+  <p>Join Fusion FitNet & transform your body</p>
+  <a href="#contact">Join Now</a>
+</section>
+
+<!-- <footer>
+  © 2025 Fusion FitNet
+</footer> -->
+
+<!-- WhatsApp -->
+<a class="whatsapp" href="https://wa.me/919147425114" target="_blank">💬</a>
+
+<!-- Dark Mode -->
+<div class="toggle" onclick="toggleDarkMode()">🌙</div>
+
+<script src="js/main.js"></script>
+
+
 <footer>
   © 2025 Fusion FitNet
 </footer>
