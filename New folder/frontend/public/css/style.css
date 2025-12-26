@@ -1,0 +1,495 @@
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+:root {
+  --primary: #ff5e14;
+  --secondary: #ff9c42;
+  --bg: #ffffff;
+  --text: #333333;
+  --dark-bg: #121212;
+  --dark-text: #eaeaea;
+}
+
+body.dark {
+  --bg: var(--dark-bg);
+  --text: var(--dark-text);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+}
+
+a { text-decoration: none; color: inherit; }
+
+header {
+  text-align: center;
+  background: url('https://images.unsplash.com/photo-1571019613914-85f342c38aa6') center/cover;
+  color: white;
+  padding: 30px;
+  position: relative;
+}
+
+header::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.5);
+}
+
+header h1, .tagline {
+  position: relative;
+  z-index: 1;
+}
+
+nav.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #333333; /* Professional dark gray */
+  padding: 10px 20px;
+  color: white;
+}
+
+nav.navbar .logo {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+nav.navbar .nav-links {
+  display: flex;
+  gap: 15px;
+}
+
+nav.navbar .nav-links a {
+  color: white;
+  font-size: 1rem;
+  transition: color 0.3s;
+}
+
+nav.navbar .nav-links a:hover {
+  color: #ff5e14; /* Highlight color */
+}
+
+nav.navbar .menu-toggle {
+  display: none;
+}
+
+/* Group login and signup buttons */
+.navbar .auth-dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.navbar .auth-dropdown .auth-icon {
+  cursor: pointer;
+  padding: 10px;
+  border-radius: 50%;
+  background: #ff5e14;
+  color: white;
+  font-size: 1.2rem;
+}
+
+.navbar .auth-dropdown .auth-menu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  right: 0;
+  background: white;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+  overflow: hidden;
+  z-index: 1000;
+}
+
+.navbar .auth-dropdown:hover .auth-menu {
+  display: block;
+}
+
+.navbar .auth-dropdown .auth-menu a {
+  display: block;
+  padding: 10px 15px;
+  color: #333;
+  text-decoration: none;
+  transition: background 0.3s;
+}
+
+.navbar .auth-dropdown .auth-menu a:hover {
+  background: #f5f5f5;
+}
+
+@media (max-width: 768px) {
+  nav.navbar .nav-links {
+    display: none;
+    flex-direction: column;
+    background: #333;
+    position: absolute;
+    top: 60px;
+    right: 0;
+    width: 100%;
+    text-align: center;
+  }
+
+  nav.navbar .nav-links.active {
+    display: flex;
+  }
+
+  nav.navbar .nav-links a {
+    padding: 15px;
+    border-top: 1px solid #444;
+    color: white;
+  }
+
+  nav.navbar .menu-toggle {
+    display: block;
+    cursor: pointer;
+    font-size: 1.5rem;
+    color: white;
+  }
+}
+
+.btn-login, .btn-signup {
+  margin-left: 15px;
+  padding: 8px 20px;
+  border-radius: 20px;
+  border: 1px solid var(--primary);
+  transition: background 0.3s, color 0.3s;
+}
+
+.btn-signup {
+  background: var(--primary);
+  color: white;
+}
+
+.btn-login:hover, .btn-signup:hover {
+  background: var(--secondary);
+  border-color: var(--secondary);
+}
+
+section {
+  padding: 60px 20px;
+  max-width: 1000px;
+  margin: auto;
+  text-align: center;
+}
+
+.btn {
+  background: linear-gradient(90deg, var(--primary), var(--secondary));
+  color: white;
+  padding: 12px 30px;
+  border-radius: 50px;
+  display: inline-block;
+  margin-top: 10px;
+}
+
+.features {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.feature-card {
+  flex: 1 1 250px;
+  background: white;
+  padding: 20px;
+  border-radius: 15px;
+}
+
+body.dark .feature-card {
+  background: #1e1e1e;
+}
+
+footer {
+  background: #111;
+  color: white;
+  text-align: center;
+  padding: 20px;
+}
+
+/* WhatsApp Button */
+.whatsapp {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: #25d366;
+  color: white;
+  padding: 15px;
+  border-radius: 50%;
+  font-size: 20px;
+}
+
+/* Dark mode toggle */
+.toggle {
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  padding: 10px 15px;
+  background: #111;
+  color: white;
+  cursor: pointer;
+}
+
+/* Contact Section */
+.contact-section {
+  background: linear-gradient(135deg, #f9f9f9, #ffffff);
+}
+
+body.dark .contact-section {
+  background: #121212;
+}
+
+.contact-subtitle {
+  max-width: 600px;
+  margin: 0 auto 40px;
+  color: #666;
+}
+
+body.dark .contact-subtitle {
+  color: #bbb;
+}
+
+.contact-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  max-width: 1000px;
+  margin: auto;
+}
+
+@media (max-width: 768px) {
+  .contact-container {
+    grid-template-columns: 1fr;
+  }
+}
+
+.contact-info {
+  display: grid;
+  gap: 20px;
+}
+
+.info-card {
+  background: white;
+  padding: 25px;
+  border-radius: 15px;
+  text-align: center;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+  transition: transform 0.3s;
+}
+
+body.dark .info-card {
+  background: #1e1e1e;
+}
+
+.info-card:hover {
+  transform: translateY(-5px);
+}
+
+.info-card span {
+  font-size: 2rem;
+  display: block;
+  margin-bottom: 10px;
+}
+
+.info-card h3 {
+  margin-bottom: 5px;
+}
+
+.contact-form {
+  background: white;
+  padding: 30px;
+  border-radius: 20px;
+  box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+}
+
+body.dark .contact-form {
+  background: #1e1e1e;
+}
+
+.form-group {
+  position: relative;
+  margin-bottom: 25px;
+}
+
+.form-group input,
+.form-group textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  outline: none;
+  font-size: 1rem;
+  background: transparent;
+  color: inherit;
+}
+
+.form-group label {
+  position: absolute;
+  top: 50%;
+  left: 12px;
+  color: #888;
+  font-size: 0.9rem;
+  transform: translateY(-50%);
+  pointer-events: none;
+  transition: 0.3s;
+  background: white;
+  padding: 0 5px;
+}
+
+body.dark .form-group label {
+  background: #1e1e1e;
+}
+
+.form-group input:focus + label,
+.form-group textarea:focus + label,
+.form-group input:valid + label,
+.form-group textarea:valid + label {
+  top: -8px;
+  font-size: 0.75rem;
+  color: var(--primary);
+}
+
+.btn.full {
+  width: 100%;
+  text-align: center;
+}
+
+/* Gallery Section */
+.gallery-section {
+  background: #f7f7f7;
+}
+
+body.dark .gallery-section {
+  background: #181818;
+}
+
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 15px;
+  max-width: 1100px;
+  margin: auto;
+}
+
+.gallery-grid img {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  border-radius: 15px;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.gallery-grid img:hover {
+  transform: scale(1.05);
+  box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+}
+
+/* Horizontal scrolling for events */
+.events-grid {
+  display: flex;
+  overflow-x: auto;
+  gap: 20px;
+  padding: 10px;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+}
+
+.events-grid::-webkit-scrollbar {
+  display: none; /* Hide scrollbar for cleaner look */
+}
+
+.event-card {
+  flex: 0 0 auto;
+  width: 300px;
+  background: white;
+  padding: 20px;
+  border-radius: 15px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  scroll-snap-align: start;
+  transition: transform 0.3s;
+}
+
+.event-card:hover {
+  transform: scale(1.05);
+}
+
+/* Enable mobile view */
+
+/* Mobile Navigation */
+@media (max-width: 768px) {
+  .menu-toggle {
+    display: block;
+    cursor: pointer;
+    font-size: 1.5rem;
+    color: white;
+  }
+
+  .nav-links {
+    display: none;
+    flex-direction: column;
+    background: #333;
+    position: absolute;
+    top: 60px;
+    right: 0;
+    width: 100%;
+    text-align: center;
+  }
+
+  .nav-links.active {
+    display: flex;
+  }
+
+  .nav-links a {
+    padding: 15px;
+    border-top: 1px solid #444;
+    color: white;
+  }
+}
+
+/* Mobile Header */
+@media (max-width: 768px) {
+  header {
+    padding: 20px;
+    font-size: 1.2rem;
+  }
+
+  .tagline {
+    font-size: 1rem;
+  }
+}
+
+/* Mobile Features */
+@media (max-width: 768px) {
+  .features {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .feature-card {
+    width: 100%;
+  }
+}
+
+/* Mobile Gallery */
+@media (max-width: 768px) {
+  .gallery-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Mobile Contact Section */
+@media (max-width: 768px) {
+  .contact-container {
+    grid-template-columns: 1fr;
+  }
+}
