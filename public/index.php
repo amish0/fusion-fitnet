@@ -21,6 +21,7 @@ file_put_contents($visitor_count_file, $visitor_count);
 
   <!-- CSS -->
   <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/team.css">
 
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -55,6 +56,7 @@ file_put_contents($visitor_count_file, $visitor_count);
     <a href="#features">Features</a>
     <a href="#gallery">Gallery</a>
     <a href="#events">Events</a>
+    <a href="#team">Our Team</a>
     <a href="#products">Products</a>
     <a href="#contact">Contact</a>
 
@@ -142,6 +144,11 @@ file_put_contents($visitor_count_file, $visitor_count);
   </div>
 </section>
 
+<section id="team">
+  <h2>Our Team</h2>
+  <div id="team-grid" class="team-grid"></div>
+</section>
+
 
 <section id="contact" class="contact-section">
   <h2>Get in Touch</h2>
@@ -220,6 +227,7 @@ file_put_contents($visitor_count_file, $visitor_count);
 <div class="toggle" onclick="toggleDarkMode()">🌙</div>
 
 <script src="js/main.js"></script>
+<script src="js/team.js"></script>
 
 
 <footer>
