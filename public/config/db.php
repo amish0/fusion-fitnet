@@ -1,7 +1,7 @@
 <?php
 $host = "localhost";
 $user = "fusisktz_admin";
-$pass = "F9!uQ@7Kx#R3Wm$Z";
+$pass = "BamSF1+2K4*X";
 $db   = "fusisktz_fusion_fitnet";
 
 mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
