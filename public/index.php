@@ -28,18 +28,6 @@ session_start();
 
 <body>
 
-<!-- Bottom Navigation (Mobile) -->
-<div class="bottom-nav">
-  <a href="#features">🏠</a>
-  <a href="#gallery">🖼️</a>
-  <a href="#events">📅</a>
-  <?php if (empty($_SESSION["user_id"])): ?>
-    <a href="auth/login.php">🔐</a>
-  <?php else: ?>
-    <a href="dashboard.php">👤</a>
-  <?php endif; ?>
-</div>
-
 <header>
   <h1>Fusion FitNet</h1>
   <p class="tagline">Fitness • Strength • Transformation</p>
@@ -134,66 +122,6 @@ session_start();
     ?>
     <p>No upcoming events.</p>
     <?php endif; ?>
-  </div>
-</section>
-
-<!-- PRODUCTS -->
-<section id="products">
-  <h2>Our Products</h2>
-
-  <div class="product-grid">
-
-    <!-- Protein -->
-    <div class="product-card">
-      <img src="https://images.unsplash.com/photo-1598266663439-2056e635781a"
-           loading="lazy"
-           alt="Protein Powder supplement">
-
-      <h3>Protein Powder</h3>
-      <p class="price">$49.99</p>
-
-      <?php if (!empty($_SESSION["user_id"])): ?>
-        <a href="cart.php?add=protein" class="btn small">Add to Cart</a>
-        <a href="cart.php?add=proteina" class="btn small">Buy Now</a>
-      <?php else: ?>
-        <a href="auth/login.php" class="btn small">Login to Buy</a>
-      <?php endif; ?>
-    </div>
-
-    <!-- Bands -->
-    <div class="product-card">
-      <img src="https://images.unsplash.com/photo-1549476464-37392241ea34"
-           loading="lazy"
-           alt="Resistance bands for workout">
-
-      <h3>Resistance Bands</h3>
-      <p class="price">$24.99</p>
-
-      <?php if (!empty($_SESSION["user_id"])): ?>
-        <a href="cart.php?add=bands" class="btn small">Add to Cart</a>
-        <a href="cart.php?add=bands" class="btn small">Buy Now</a>
-      <?php else: ?>
-        <a href="auth/login.php" class="btn small">Login to Buy</a>
-      <?php endif; ?>
-    </div>
-
-    <!-- Yoga Mat -->
-    <div class="product-card">
-      <img src="https://images.unsplash.com/photo-1579758629938-03607ccdbaba"
-           loading="lazy"
-           alt="Yoga mat for home workout">
-
-      <h3>Yoga Mat</h3>
-      <p class="price">$39.99</p>
-
-      <?php if (!empty($_SESSION["user_id"])): ?>
-        <a href="cart.php?add=yoga-mat" class="btn small">Add to Cart</a>
-        <a href="cart.php?add=yoga-mat" class="btn small">Buy Now</a>
-      <?php else: ?>
-        <a href="auth/login.php" class="btn small">Login to Buy</a>
-      <?php endif; ?>
-    </div>
-
   </div>
 </section>
 
