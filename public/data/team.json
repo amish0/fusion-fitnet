@@ -1,0 +1,26 @@
+[
+    {
+        "name": "Ayan Ain",
+        "role": "Founder & CEO",
+        "image": "images/CEO.png",
+        "bio": "To Be updated"
+    },
+    {
+        "name": "Piryanka Das",
+        "role": "TO be updated",
+        "image": "images/Member1.png",
+        "bio": "To Be updated"
+    },
+    {
+        "name": "TO BE UPDATED",
+        "role": "Nutritionist",
+        "image": "images/Member2.png",
+        "bio": "provides personalized nutrition plans to complement your fitness journey."
+    },
+    {
+        "name": "TO BE UPDATED",
+        "role": "Nutritionist",
+        "image": "images/diet1.png",
+        "bio": "provides personalized nutrition plans to complement your fitness journey."
+    }
+]
