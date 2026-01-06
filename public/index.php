@@ -101,12 +101,12 @@ session_start();
   <p class="section-subtitle">A glimpse of our workouts and transformations.</p>
 
   <div class="gallery-grid">
-    <img src="images/g1.jpg" loading="lazy" alt="Fusion FitNet workout session">
-    <img src="images/g2.jpg" loading="lazy" alt="Strength training at Fusion FitNet">
-    <img src="images/g3.jpg" loading="lazy" alt="Personal training session">
-    <img src="images/g4.jpg" loading="lazy" alt="Group fitness class">
-    <img src="images/g5.jpg" loading="lazy" alt="Transformation journey">
-    <img src="images/g6.jpg" loading="lazy" alt="Fitness community event">
+    <img src="images/g6.jpg" loading="lazy" alt="Gallery">
+    <img src="images/g7.jpg" loading="lazy" alt="Gallery">
+    <img src="images/g8.jpg" loading="lazy" alt="Gallery">
+    <img src="images/g9.jpg" loading="lazy" alt="Gallery">
+    <img src="images/g10.jpg" loading="lazy" alt="Gallery">
+    <img src="images/g11.jpg" loading="lazy" alt="Gallery">
   </div>
 </section>
 
