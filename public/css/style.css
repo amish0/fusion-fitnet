@@ -25,10 +25,14 @@ body.dark {
 }
 
 body {
-  font-family: Arial, sans-serif;
+  font-family: 'Poppins', sans-serif;
   background: var(--bg);
   color: var(--text);
   line-height: 1.6;
+}
+
+h1, h2, h3 {
+  font-family: 'Montserrat', sans-serif;
 }
 
 a { text-decoration: none; color: inherit; }
@@ -39,6 +43,7 @@ header {
   padding: 30px;
   position: relative;
   text-align: center;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
 }
 
 header::after {
@@ -64,11 +69,13 @@ nav {
 nav a {
   color: white;
   padding: 15px 25px;
+  transition: transform 0.3s ease;
 }
 
 nav a:hover {
   background: var(--primary);
   border-radius: 5px;
+  transform: scale(1.1);
 }
 
 .btn-login, .btn-signup {
@@ -116,6 +123,18 @@ section {
   background: white;
   padding: 20px;
   border-radius: 15px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.feature-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+}
+
+.feature-card i {
+  font-size: 2.5rem;
+  color: var(--primary);
+  margin-bottom: 15px;
 }
 
 body.dark .feature-card {
@@ -127,6 +146,13 @@ footer {
   color: white;
   text-align: center;
   padding: 20px;
+}
+
+.visitor-counter {
+  font-size: 0.8rem;
+  margin-top: 10px;
+  color: #ccc;
+  text-shadow: 1px 1px 1px #000;
 }
 
 /* WhatsApp Button */
@@ -681,6 +707,13 @@ button, a {
 
   .mobile-cta h2 {
     font-size: 1.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .visitor-counter {
+    margin-top: 5px;
+    font-size: 0.9rem;
   }
 }
 

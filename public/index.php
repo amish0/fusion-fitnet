@@ -1,5 +1,11 @@
 <?php
 session_start();
+
+// Visitor Counter
+$visitor_count_file = 'data/visitor_count.txt';
+$visitor_count = (int)file_get_contents($visitor_count_file);
+$visitor_count++;
+file_put_contents($visitor_count_file, $visitor_count);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -15,6 +21,14 @@ session_start();
 
   <!-- CSS -->
   <link rel="stylesheet" href="css/style.css">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 
   <!-- Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=YOUR_GA_ID"></script>
@@ -68,16 +82,19 @@ session_start();
   <h2>Why Choose Fusion FitNet?</h2>
   <div class="features">
     <div class="feature-card">
+      <i class="fas fa-dumbbell"></i>
       <h3>Personalized Training</h3>
       <p>Custom workouts and plans designed to match your fitness level and goals.</p>
       <a href="#contact" class="btn">Join Now</a>
     </div>
     <div class="feature-card">
+      <i class="fas fa-trophy"></i>
       <h3>Expert Coaches</h3>
       <p>Learn from certified trainers with years of experience in strength and wellness.</p>
       <a href="#contact" class="btn">Meet Our Coaches</a>
     </div>
     <div class="feature-card">
+      <i class="fas fa-users"></i>
       <h3>Community Support</h3>
       <p>Join a motivated community that keeps you accountable and inspired every day.</p>
       <a href="#contact" class="btn">Get Started</a>
@@ -206,9 +223,9 @@ session_start();
 
 
 <footer>
-  © 2025 Fusion FitNet
+  © 2025 Fusion FitNet | <span class="visitor-counter">Visitors: <?php echo $visitor_count; ?></span>
 </footer>
 
-<script src="js/main.js"></script>
+
 </body>
 </html>
