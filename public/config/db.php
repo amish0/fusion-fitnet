@@ -1,8 +1,8 @@
 <?php
 $host = "localhost";
-$user = "DB_USERNAME";
-$pass = "DB_PASSWORD";
-$db   = "DB_NAME";
+$user = "fusisktz_admin";
+$pass = "F9!uQ@7Kx#R3Wm$Z";
+$db   = "fusisktz_fusion_fitnet";
 
 $conn = new mysqli($host, $user, $pass, $db);
 
