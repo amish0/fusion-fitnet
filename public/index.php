@@ -101,7 +101,7 @@ session_start();
   <p class="section-subtitle">A glimpse of our workouts and transformations.</p>
 
   <div class="gallery-grid">
-    <img src="images/g6.jpeg" loading="lazy" alt="Gallery">
+    <img src="images/g12.jpeg" loading="lazy" alt="Gallery">
     <img src="images/g7.jpeg" loading="lazy" alt="Gallery">
     <img src="images/g8.jpeg" loading="lazy" alt="Gallery">
     <img src="images/g9.jpeg" loading="lazy" alt="Gallery">
