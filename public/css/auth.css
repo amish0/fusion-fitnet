@@ -58,3 +58,21 @@ body::before {
   color: var(--primary);
   font-weight: bold;
 }
+
+.btn.full {
+  width: 100%;
+  text-align: center;
+  background: linear-gradient(90deg, var(--primary), var(--secondary));
+  color: white;
+  padding: 12px 30px;
+  border-radius: 50px;
+  display: inline-block;
+  margin-top: 10px;
+  border: none;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.btn.full:hover {
+  background: linear-gradient(90deg, #e64a00, #ff8c32);
+}

@@ -6,6 +6,10 @@ if (empty($_SESSION["user_id"])) {
     header("Location: auth/login.php");
     exit;
 }
+
+$name = $_SESSION["name"];
+$email = $_SESSION["email"];
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -37,8 +41,12 @@ if (empty($_SESSION["user_id"])) {
     </nav>
 
     <main style="padding: 20px; text-align: center;">
-        <h2>Welcome to your dashboard!</h2>
-        <p>This page is under construction.</p>
+        <h2>Welcome to your dashboard, <?php echo htmlspecialchars($name); ?>!</h2>
+        <p>Here are your account details:</p>
+        <div style="text-align: left; display: inline-block; margin-top: 20px;">
+            <p><strong>Name:</strong> <?php echo htmlspecialchars($name); ?></p>
+            <p><strong>Email:</strong> <?php echo htmlspecialchars($email); ?></p>
+        </div>
     </main>
 
     <footer>
