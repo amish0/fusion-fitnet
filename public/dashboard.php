@@ -21,7 +21,7 @@ $email = $_SESSION["email"];
 </head>
 <body>
     <header>
-        <h1>My Account</h1>
+        <h1>Welcome, <?php echo htmlspecialchars($name); ?>!</h1>
     </header>
 
     <nav class="navbar">
@@ -41,7 +41,6 @@ $email = $_SESSION["email"];
     </nav>
 
     <main style="padding: 20px; text-align: center;">
-        <h2>Welcome to your dashboard, <?php echo htmlspecialchars($name); ?>!</h2>
         <p>Here are your account details:</p>
         <div style="text-align: left; display: inline-block; margin-top: 20px;">
             <p><strong>Name:</strong> <?php echo htmlspecialchars($name); ?></p>
