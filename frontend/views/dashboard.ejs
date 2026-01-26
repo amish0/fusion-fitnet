@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= title %></title>
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+</head>
+<body>
+
+<header>
+  <h1>Fusion FitNet</h1>
+  <p class="tagline">Fitness • Strength • Transformation</p>
+</header>
+
+<nav class="navbar">
+  <div class="logo">Fusion FitNet</div>
+  <div class="menu-toggle" onclick="toggleMenu()">☰</div>
+  <div class="nav-links" id="navLinks">
+    <a href="/">Home</a>
+    <a href="/dashboard" class="btn-login">My Account</a>
+    <a href="/auth/logout" class="btn-signup">Logout</a>
+  </div>
+</nav>
+
+<div class="dashboard-container">
+  <h1>Welcome, <%= userName %>! 👋</h1>
+  <p class="subtitle">Your personal fitness dashboard</p>
+
+  <div class="dashboard-grid">
+    <div class="dashboard-card">
+      <h2><i class="fas fa-user-circle"></i> Profile Information</h2>
+      <p><strong>Name:</strong> <%= userName %></p>
+      <p><strong>Email:</strong> <%= userEmail %></p>
+      <button class="btn" onclick="editProfile()">Edit Profile</button>
+    </div>
+
+    <div class="dashboard-card">
+      <h2><i class="fas fa-calendar"></i> My Bookings</h2>
+      <p>View and manage your training sessions.</p>
+      <button class="btn" onclick="viewBookings()">View Bookings</button>
+    </div>
+
+    <div class="dashboard-card">
+      <h2><i class="fas fa-chart-line"></i> Progress</h2>
+      <p>Track your fitness progress over time.</p>
+      <button class="btn" onclick="viewProgress()">View Progress</button>
+    </div>
+
+    <div class="dashboard-card">
+      <h2><i class="fas fa-heart"></i> Goals</h2>
+      <p>Set and achieve your fitness goals.</p>
+      <button class="btn" onclick="viewGoals()">View Goals</button>
+    </div>
+
+    <div class="dashboard-card">
+      <h2><i class="fas fa-shopping-cart"></i> Purchase History</h2>
+      <p>Review your past purchases and memberships.</p>
+      <button class="btn" onclick="viewPurchases()">View History</button>
+    </div>
+
+    <div class="dashboard-card">
+      <h2><i class="fas fa-cog"></i> Settings</h2>
+      <p>Manage your account preferences.</p>
+      <button class="btn" onclick="viewSettings()">Manage Settings</button>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <p>&copy; 2024 Fusion FitNet. All rights reserved.</p>
+</footer>
+
+<script>
+function editProfile() { alert('Profile editor coming soon!'); }
+function viewBookings() { alert('Bookings viewer coming soon!'); }
+function viewProgress() { alert('Progress tracker coming soon!'); }
+function viewGoals() { alert('Goals manager coming soon!'); }
+function viewPurchases() { alert('Purchase history coming soon!'); }
+function viewSettings() { alert('Settings manager coming soon!'); }
+</script>
+
+</body>
+</html>

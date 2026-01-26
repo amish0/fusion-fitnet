@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= title %></title>
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Poppins:wght@400;600&display=swap">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+</head>
+<body>
+
+<header>
+  <h1>Fusion FitNet</h1>
+  <p class="tagline">Fitness • Strength • Transformation</p>
+</header>
+
+<nav class="navbar">
+  <div class="logo">Fusion FitNet</div>
+  <div class="menu-toggle" onclick="toggleMenu()">☰</div>
+
+  <div class="nav-links" id="navLinks">
+    <a href="/#features">Features</a>
+    <a href="/#gallery">Gallery</a>
+    <a href="/#events">Events</a>
+    <a href="/#team">Our Team</a>
+    <a href="/#products">Products</a>
+    <a href="/#contact">Contact</a>
+
+    <% if (isLoggedIn) { %>
+      <a href="/cart">🛒 Cart</a>
+      <a href="/dashboard" class="btn-login">My Account</a>
+      <a href="/auth/logout" class="btn-signup">Logout</a>
+    <% } else { %>
+      <a href="/auth/login" class="btn-login">Login</a>
+      <a href="/auth/signup" class="btn-signup">Sign Up</a>
+    <% } %>
+  </div>
+</nav>
+
+<section id="features">
+  <h2>Why Choose Fusion FitNet?</h2>
+  <div class="features">
+    <div class="feature-card">
+      <i class="fas fa-dumbbell"></i>
+      <h3>Personalized Training</h3>
+      <p>Custom workouts and plans designed to match your fitness level and goals.</p>
+      <a href="#contact" class="btn">Join Now</a>
+    </div>
+    <div class="feature-card">
+      <i class="fas fa-trophy"></i>
+      <h3>Expert Coaches</h3>
+      <p>Learn from certified trainers with years of experience in strength and wellness.</p>
+      <a href="#contact" class="btn">Meet Our Coaches</a>
+    </div>
+    <div class="feature-card">
+      <i class="fas fa-users"></i>
+      <h3>Community Support</h3>
+      <p>Connect with thousands of members on their fitness journey and reach goals together.</p>
+      <a href="#contact" class="btn">Join Community</a>
+    </div>
+  </div>
+</section>
+
+<section id="gallery">
+  <h2>Our Facility & Members</h2>
+  <div class="gallery swipe" id="swipeGallery">
+    <% if (gallery && gallery.length > 0) { %>
+      <% gallery.forEach(item => { %>
+        <img src="<%= item.image_url %>" alt="<%= item.title %>">
+      <% }); %>
+    <% } else { %>
+      <p>Gallery loading...</p>
+    <% } %>
+  </div>
+</section>
+
+<section id="events">
+  <h2>Upcoming Events</h2>
+  <div class="events-list">
+    <% if (events && events.length > 0) { %>
+      <% events.forEach(event => { %>
+        <div class="event-card">
+          <h3><%= event.title %></h3>
+          <p><strong>Date:</strong> <%= event.date %></p>
+          <p><strong>Time:</strong> <%= event.time %></p>
+          <p><%= event.description %></p>
+          <button class="btn" onclick="registerEvent(<%= event.id %>)">Register</button>
+        </div>
+      <% }); %>
+    <% } else { %>
+      <p>No upcoming events at the moment.</p>
+    <% } %>
+  </div>
+</section>
+
+<section id="team">
+  <h2>Our Expert Team</h2>
+  <div class="team-container">
+    <% if (team && team.length > 0) { %>
+      <% team.forEach(member => { %>
+        <div class="team-member">
+          <img src="<%= member.image_url %>" alt="<%= member.name %>">
+          <h3><%= member.name %></h3>
+          <p class="role"><%= member.role %></p>
+          <p><%= member.bio %></p>
+          <div class="social-links">
+            <% if (member.social) { %>
+              <% if (member.social.facebook) { %>
+                <a href="<%= member.social.facebook %>" target="_blank"><i class="fab fa-facebook"></i></a>
+              <% } %>
+              <% if (member.social.instagram) { %>
+                <a href="<%= member.social.instagram %>" target="_blank"><i class="fab fa-instagram"></i></a>
+              <% } %>
+              <% if (member.social.twitter) { %>
+                <a href="<%= member.social.twitter %>" target="_blank"><i class="fab fa-twitter"></i></a>
+              <% } %>
+            <% } %>
+          </div>
+        </div>
+      <% }); %>
+    <% } %>
+  </div>
+</section>
+
+<section id="blog">
+  <h2>Latest Blog Posts</h2>
+  <div class="blog-list">
+    <% if (blog && blog.length > 0) { %>
+      <% blog.slice(0, 3).forEach(post => { %>
+        <article class="blog-card">
+          <h3><%= post.title %></h3>
+          <p class="date"><%= post.date %></p>
+          <p><%= post.excerpt %></p>
+          <a href="#" class="read-more">Read More →</a>
+        </article>
+      <% }); %>
+    <% } %>
+  </div>
+</section>
+
+<section id="contact">
+  <h2>Get In Touch</h2>
+  <form id="contactForm" onsubmit="submitContact(event)">
+    <div class="form-group">
+      <input type="text" name="name" placeholder="Your Name" required>
+    </div>
+    <div class="form-group">
+      <input type="email" name="email" placeholder="Your Email" required>
+    </div>
+    <div class="form-group">
+      <input type="text" name="subject" placeholder="Subject" required>
+    </div>
+    <div class="form-group">
+      <textarea name="message" placeholder="Your Message" rows="5" required></textarea>
+    </div>
+    <button type="submit" class="btn btn-primary">Send Message</button>
+  </form>
+</section>
+
+<footer>
+  <p>&copy; 2024 Fusion FitNet. All rights reserved. | Visitors: <%= visitors %></p>
+</footer>
+
+<script src="/js/main.js"></script>
+<script src="/js/slider.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/team.js"></script>
+<script src="/js/blog.js"></script>
+<script src="/js/events.js"></script>
+
+<script>
+function submitContact(e) {
+  e.preventDefault();
+  const formData = new FormData(document.getElementById('contactForm'));
+  const data = {
+    name: formData.get('name'),
+    email: formData.get('email'),
+    subject: formData.get('subject'),
+    message: formData.get('message')
+  };
+
+  fetch('/contact/submit', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(data)
+  })
+  .then(r => r.json())
+  .then(res => {
+    alert(res.message);
+    if (res.success) document.getElementById('contactForm').reset();
+  })
+  .catch(err => alert('Error: ' + err));
+}
+
+function registerEvent(eventId) {
+  alert('Event registration feature coming soon!');
+}
+</script>
+
+</body>
+</html>
