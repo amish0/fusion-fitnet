@@ -166,9 +166,9 @@ fusion-fitnet-new/
    DEBUG=True
    DB_HOST=localhost
    DB_PORT=3306
-   DB_USER=fusisktz_admin
-   DB_PASSWORD=BamSF1+2K4*X
-   DB_NAME=fusisktz_fusion_fitnet
+   DB_USER=
+   DB_PASSWORD=
+   DB_NAME=
    SECRET_KEY=your-secret-key
    ```
 
