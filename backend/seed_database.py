@@ -51,13 +51,16 @@ def seed_database():
     # ]
     
     # # Sample products
-    # products_data = [
-    #     ("Yoga Mat", "High-quality non-slip yoga mat", 29.99, "https://images.unsplash.com/photo-1601925260368-ae2f83cf8b7f?w=300&h=200&fit=crop"),
-    #     ("Dumbbell Set", "Adjustable dumbbell set 5-50 lbs", 199.99, "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=300&h=200&fit=crop"),
-    #     ("Resistance Bands", "Set of 5 resistance bands", 24.99, "https://images.unsplash.com/photo-1517836357463-d25ddfcbf042?w=300&h=200&fit=crop"),
-    #     ("Water Bottle", "Sports water bottle 32 oz", 19.99, "https://images.unsplash.com/photo-1602143407151-7111542de6e9?w=300&h=200&fit=crop"),
-    #     ("Gym Towel", "Microfiber gym towel set", 14.99, "https://images.unsplash.com/photo-1594938298603-c8148c4dae35?w=300&h=200&fit=crop"),
-    # ]
+    products_data = [
+        ("Yoga Mat", "High-quality non-slip yoga mat perfect for all types of yoga and floor exercises", 29.99, "https://images.unsplash.com/photo-1601925260368-ae2f83cf8b7f?w=300&h=200&fit=crop", "Equipment", 25, True),
+        ("Dumbbell Set", "Adjustable dumbbell set 5-50 lbs with easy weight adjustment system", 199.99, "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=300&h=200&fit=crop", "Equipment", 15, True),
+        ("Resistance Bands", "Set of 5 resistance bands with different resistance levels for full body workout", 24.99, "https://images.unsplash.com/photo-1517836357463-d25ddfcbf042?w=300&h=200&fit=crop", "Equipment", 50, True),
+        ("Water Bottle", "Sports water bottle 32 oz with leak-proof cap and easy-carry handle", 19.99, "https://images.unsplash.com/photo-1602143407151-7111542de6e9?w=300&h=200&fit=crop", "Accessories", 100, True),
+        ("Gym Towel", "Microfiber gym towel set - quick dry and super absorbent", 14.99, "https://images.unsplash.com/photo-1594938298603-c8148c4dae35?w=300&h=200&fit=crop", "Accessories", 75, True),
+        ("Protein Shaker", "BPA-free protein shaker with mixing ball and measurement marks", 12.99, "https://images.unsplash.com/photo-1570831739435-6601aa3fa4fb?w=300&h=200&fit=crop", "Accessories", 60, False),
+        ("Foam Roller", "High-density foam roller for muscle recovery and deep tissue massage", 34.99, "https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=300&h=200&fit=crop", "Equipment", 30, False),
+        ("Jump Rope", "Professional speed jump rope with adjustable length and ball bearings", 15.99, "https://images.unsplash.com/photo-1611672585731-fa10603fb9e0?w=300&h=200&fit=crop", "Equipment", 45, False),
+    ]
     
     try:
         # Insert gallery data
@@ -87,10 +90,36 @@ def seed_database():
         #     db.execute_query(query, (title, content, excerpt, author_id, published, pub_date))
         
         # # Insert products data
-        # print("🛍️ Seeding products...")
-        # for name, description, price, image_url in products_data:
-        #     query = "INSERT INTO products (name, description, price, image_url) VALUES (%s, %s, %s, %s)"
-        #     db.execute_query(query, (name, description, price, image_url))
+        print("🛍️ Seeding products...")
+        product_ids = []
+        for name, description, price, image_url, category, stock, is_featured in products_data:
+            query = "INSERT INTO products (name, description, price, image_url, category, stock, is_featured) VALUES (%s, %s, %s, %s, %s, %s, %s) RETURNING id"
+            db.cursor.execute(query, (name, description, price, image_url, category, stock, is_featured))
+            result = db.cursor.fetchone()
+            if result:
+                product_ids.append((result['id'], name))
+        
+        # Add multiple images for selected products
+        print("📸 Seeding product images...")
+        product_images = [
+            # Yoga Mat - multiple angles
+            (product_ids[0][0], "https://images.unsplash.com/photo-1601925260368-ae2f83cf8b7f?w=500&h=400&fit=crop", 0),
+            (product_ids[0][0], "https://images.unsplash.com/photo-1588286840104-8957b019727f?w=500&h=400&fit=crop", 1),
+            (product_ids[0][0], "https://images.unsplash.com/photo-1599901860904-17e6ed7083a0?w=500&h=400&fit=crop", 2),
+            
+            # Dumbbell Set - different views
+            (product_ids[1][0], "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=500&h=400&fit=crop", 0),
+            (product_ids[1][0], "https://images.unsplash.com/photo-1517838277536-f5f99be501cd?w=500&h=400&fit=crop", 1),
+            (product_ids[1][0], "https://images.unsplash.com/photo-1517838277536-f5f99be501cd?w=500&h=400&fit=crop", 2),
+            
+            # Resistance Bands
+            (product_ids[2][0], "https://images.unsplash.com/photo-1517836357463-d25ddfcbf042?w=500&h=400&fit=crop", 0),
+            (product_ids[2][0], "https://images.unsplash.com/photo-1598289431512-b97b0917affc?w=500&h=400&fit=crop", 1),
+        ]
+        
+        for product_id, image_url, order in product_images:
+            query = "INSERT INTO product_images (product_id, image_url, display_order) VALUES (%s, %s, %s)"
+            db.execute_query(query, (product_id, image_url, order))
         
         print("\n✅ Database seeding completed successfully!")
         print("📊 Inserted:")
@@ -98,7 +127,7 @@ def seed_database():
         # print(f"   - {len(events_data)} events")
         # print(f"   - {len(team_data)} team members")
         # print(f"   - {len(blog_data)} blog posts")
-        # print(f"   - {len(products_data)} products")
+        print(f"   - {len(products_data)} products")
         
     except Exception as e:
         print(f"❌ Error seeding database: {e}")

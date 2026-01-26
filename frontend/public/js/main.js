@@ -99,4 +99,59 @@ style.textContent = `
 `;
 document.head.appendChild(style);
 
+// Product Image Carousel
+document.addEventListener('DOMContentLoaded', () => {
+  const productCards = document.querySelectorAll('.product-card');
+  
+  productCards.forEach(card => {
+    const images = card.querySelectorAll('.carousel-image');
+    const indicators = card.querySelectorAll('.indicator');
+    
+    if (images.length <= 1) return; // Skip if only one image
+    
+    let currentIndex = 0;
+    let autoRotateInterval;
+    
+    // Auto-rotate images every 3 seconds
+    function startAutoRotate() {
+      autoRotateInterval = setInterval(() => {
+        currentIndex = (currentIndex + 1) % images.length;
+        updateCarousel();
+      }, 3000);
+    }
+    
+    function stopAutoRotate() {
+      clearInterval(autoRotateInterval);
+    }
+    
+    function updateCarousel() {
+      images.forEach((img, idx) => {
+        img.classList.toggle('active', idx === currentIndex);
+      });
+      indicators.forEach((ind, idx) => {
+        ind.classList.toggle('active', idx === currentIndex);
+      });
+    }
+    
+    // Manual indicator click
+    indicators.forEach((indicator, idx) => {
+      indicator.addEventListener('click', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        currentIndex = idx;
+        updateCarousel();
+        stopAutoRotate();
+        startAutoRotate(); // Restart auto-rotate after manual change
+      });
+    });
+    
+    // Pause on hover, resume on leave
+    card.addEventListener('mouseenter', stopAutoRotate);
+    card.addEventListener('mouseleave', startAutoRotate);
+    
+    // Start auto-rotation
+    startAutoRotate();
+  });
+});
+
 console.log('Main.js loaded');

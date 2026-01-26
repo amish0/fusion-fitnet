@@ -284,7 +284,7 @@
             background: white;
             padding: 30px;
             border-radius: 10px;
-            max-width: 500px;
+            max-width: 600px;
             width: 90%;
             max-height: 90vh;
             overflow-y: auto;
@@ -372,6 +372,59 @@
                 grid-template-columns: repeat(2, 1fr);
             }
         }
+        
+        /* Product Image Management Styles */
+        .product-image-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 10px;
+            padding: 10px;
+            background: #f5f5f5;
+            border-radius: 5px;
+            transition: background 0.2s;
+        }
+        
+        .product-image-item:hover {
+            background: #ebebeb;
+        }
+        
+        .product-image-item img {
+            width: 60px;
+            height: 60px;
+            object-fit: cover;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        .image-url-text {
+            flex: 1;
+            font-size: 0.85rem;
+            color: #666;
+            word-break: break-all;
+            font-family: monospace;
+        }
+        
+        .image-order-badge {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            white-space: nowrap;
+        }
+        
+        #new-image-url {
+            flex: 1;
+        }
+        
+        .additional-images-header {
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 10px;
+            font-size: 0.95rem;
+        }
     </style>
 </head>
 <body>
@@ -384,6 +437,7 @@
                 <a href="#gallery" class="nav-link" data-section="gallery">🖼️ Gallery</a>
                 <a href="#events" class="nav-link" data-section="events">📅 Events</a>
                 <a href="#team" class="nav-link" data-section="team">👥 Team</a>
+                <a href="#products" class="nav-link" data-section="products">🛍️ Products</a>
             </nav>
         </aside>
         
@@ -419,6 +473,10 @@
                     <div class="stat-card">
                         <h3 id="stat-team">0</h3>
                         <p>Team Members</p>
+                    </div>
+                    <div class="stat-card">
+                        <h3 id="stat-products">0</h3>
+                        <p>Products</p>
                     </div>
                     <div class="stat-card">
                         <h3 id="stat-users">0</h3>
@@ -488,6 +546,31 @@
                     </thead>
                     <tbody id="team-list">
                         <tr><td colspan="4" style="text-align: center; padding: 30px;">Loading...</td></tr>
+                    </tbody>
+                </table>
+            </section>
+            
+            <!-- Products Section -->
+            <section id="products" class="content-section">
+                <div class="section-header">
+                    <h2>Manage Products</h2>
+                    <button class="btn-primary" onclick="openAddProductModal()">+ Add New Product</button>
+                    <p style="font-size: 0.9rem; color: #666; margin-top: 10px;">Maximum 10 products allowed</p>
+                </div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Category</th>
+                            <th>Price</th>
+                            <th>Stock</th>
+                            <th>Featured</th>
+                            <th>Image</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="products-list">
+                        <tr><td colspan="7" style="text-align: center; padding: 30px;">Loading...</td></tr>
                     </tbody>
                 </table>
             </section>
@@ -602,6 +685,63 @@
                     <input type="tel" id="team-phone">
                 </div>
                 <button type="submit" class="btn-primary" style="width: 100%;">Save Team Member</button>
+            </form>
+        </div>
+    </div>
+    
+    <!-- Add/Edit Product Modal -->
+    <div id="product-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="product-modal-title">Add Product</h2>
+                <button class="close-btn" onclick="closeProductModal()">&times;</button>
+            </div>
+            <form id="product-form" onsubmit="saveProduct(event)">
+                <div class="form-group">
+                    <label for="product-name">Product Name</label>
+                    <input type="text" id="product-name" required>
+                </div>
+                <div class="form-group">
+                    <label for="product-description">Description</label>
+                    <textarea id="product-description" rows="4"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="product-price">Price ($)</label>
+                    <input type="number" id="product-price" step="0.01" min="0" required>
+                </div>
+                <div class="form-group">
+                    <label for="product-image">Main Image URL</label>
+                    <input type="url" id="product-image">
+                </div>
+                
+                <!-- Additional Images Section (shown only when editing) -->
+                <div id="additional-images-section" style="display: none;">
+                    <div class="form-group">
+                        <label class=\"additional-images-header\">📸 Additional Product Images (for carousel)</label>
+                        <p style=\"font-size: 0.85rem; color: #666; margin-bottom: 10px;\">Add multiple images to create an auto-rotating carousel on product cards</p>
+                        <div id="product-images-list" style="margin-bottom: 15px;">
+                            <!-- Images will be loaded here -->
+                        </div>
+                        <div style="display: flex; gap: 10px;">
+                            <input type="url" id="new-image-url" placeholder="Enter image URL">
+                            <button type="button" class="btn-primary" onclick="addProductImage()">+ Add Image</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="product-category">Category</label>
+                    <input type="text" id="product-category" placeholder="e.g., Equipment, Apparel, Supplements">
+                </div>
+                <div class="form-group">
+                    <label for="product-stock">Stock Quantity</label>
+                    <input type="number" id="product-stock" min="0" value="0">
+                </div>
+                <div class="form-group" style="display: flex; align-items: center; gap: 10px;">
+                    <input type="checkbox" id="product-featured" style="width: auto;">
+                    <label for="product-featured" style="margin: 0;">Feature on Homepage (max 5 featured products shown)</label>
+                </div>
+                <button type="submit" class="btn-primary" style="width: 100%;">Save Product</button>
             </form>
         </div>
     </div>

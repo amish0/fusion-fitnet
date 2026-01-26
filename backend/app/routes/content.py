@@ -149,3 +149,80 @@ def get_blog_post(id):
     except Exception as e:
         print(f"Error fetching blog post: {e}")
         return jsonify({'message': f'Error fetching blog post: {str(e)}'}), 500
+
+@content_bp.route('/products', methods=['GET'])
+def get_products():
+    """Get all products from database."""
+    try:
+        products_data = db.fetch_all('SELECT * FROM products ORDER BY created_at DESC')
+        return jsonify(products_data or []), 200
+    except Exception as e:
+        print(f"Error fetching products: {e}")
+        return jsonify({'message': f'Error fetching products: {str(e)}'}), 500
+
+@content_bp.route('/products/featured', methods=['GET'])
+def get_featured_products():
+    """Get featured products for homepage (max 5) with all images."""
+    try:
+        products_data = db.fetch_all(
+            'SELECT * FROM products WHERE is_featured = TRUE ORDER BY created_at DESC LIMIT 5'
+        )
+        
+        # Fetch images for each product
+        if products_data:
+            for product in products_data:
+                images = db.fetch_all(
+                    'SELECT image_url, display_order FROM product_images WHERE product_id = %s ORDER BY display_order',
+                    (product['id'],)
+                )
+                # If product has additional images, combine them with main image
+                if images:
+                    product['images'] = [img['image_url'] for img in images]
+                else:
+                    # Fall back to main image only
+                    product['images'] = [product['image_url']]
+        
+        return jsonify(products_data or []), 200
+    except Exception as e:
+        print(f"Error fetching featured products: {e}")
+        return jsonify({'message': f'Error fetching featured products: {str(e)}'}), 500
+
+@content_bp.route('/products/<int:id>', methods=['GET'])
+def get_product(id):
+    """Get single product with all images from database."""
+    try:
+        product = db.fetch_one('SELECT * FROM products WHERE id = %s', (id,))
+        if not product:
+            return jsonify({'message': 'Product not found'}), 404
+        
+        # Fetch all images for this product
+        product_dict = dict(product)
+        images = db.fetch_all(
+            'SELECT image_url FROM product_images WHERE product_id = %s ORDER BY display_order ASC',
+            (id,)
+        )
+        
+        # Add images array to product
+        product_dict['images'] = [img['image_url'] for img in images] if images else []
+        
+        # If no additional images, use main image_url
+        if not product_dict['images'] and product_dict.get('image_url'):
+            product_dict['images'] = [product_dict['image_url']]
+        
+        return jsonify(product_dict), 200
+    except Exception as e:
+        print(f"Error fetching product: {e}")
+        return jsonify({'message': f'Error fetching product: {str(e)}'}), 500
+
+@content_bp.route('/products/<int:id>/images', methods=['GET'])
+def get_product_images(id):
+    """Get all images for a product."""
+    try:
+        images = db.fetch_all(
+            'SELECT * FROM product_images WHERE product_id = %s ORDER BY display_order ASC',
+            (id,)
+        )
+        return jsonify(images or []), 200
+    except Exception as e:
+        print(f"Error fetching product images: {e}")
+        return jsonify({'message': f'Error fetching product images: {str(e)}'}), 500

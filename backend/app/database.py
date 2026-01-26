@@ -100,6 +100,9 @@ class Database:
                 description TEXT,
                 price DECIMAL(10, 2) NOT NULL,
                 image_url VARCHAR(500),
+                category VARCHAR(100),
+                stock INT DEFAULT 0,
+                is_featured BOOLEAN DEFAULT FALSE,
                 created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
             )""",
             
@@ -175,6 +178,16 @@ class Database:
                 image_url VARCHAR(500),
                 created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
                 updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+            )""",
+            
+            # Product images table (for multiple images per product)
+            """CREATE TABLE IF NOT EXISTS product_images (
+                id SERIAL PRIMARY KEY,
+                product_id INT NOT NULL,
+                image_url VARCHAR(500) NOT NULL,
+                display_order INT DEFAULT 0,
+                created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+                FOREIGN KEY (product_id) REFERENCES products(id) ON DELETE CASCADE
             )""",
             
             # Visitors table

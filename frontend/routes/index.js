@@ -11,6 +11,7 @@ router.get('/', async (req, res) => {
     const eventsRes = await axios.get(`${FLASK_API}/api/events`);
     const teamRes = await axios.get(`${FLASK_API}/api/team`);
     const blogRes = await axios.get(`${FLASK_API}/api/blog`);
+    const productsRes = await axios.get(`${FLASK_API}/api/products/featured`);
 
     res.render('index', {
       title: 'Fusion FitNet',
@@ -20,7 +21,8 @@ router.get('/', async (req, res) => {
       gallery: galleryRes.data,
       events: eventsRes.data,
       team: teamRes.data,
-      blog: blogRes.data
+      blog: blogRes.data,
+      products: productsRes.data
     });
   } catch (error) {
     console.error('Error fetching data:', error.message);
@@ -32,7 +34,8 @@ router.get('/', async (req, res) => {
       gallery: [],
       events: [],
       team: [],
-      blog: []
+      blog: [],
+      products: []
     });
   }
 });
@@ -74,6 +77,43 @@ router.get('/contact', (req, res) => {
     isLoggedIn: !!req.session.userId,
     userName: req.session.userName
   });
+});
+
+// GET: Products page
+router.get('/products', async (req, res) => {
+  try {
+    const productsRes = await axios.get(`${FLASK_API}/api/products`);
+    res.render('products', {
+      title: 'Our Products',
+      isLoggedIn: !!req.session.userId,
+      userName: req.session.userName,
+      products: productsRes.data
+    });
+  } catch (error) {
+    console.error('Error fetching products:', error.message);
+    res.render('products', {
+      title: 'Our Products',
+      isLoggedIn: !!req.session.userId,
+      userName: req.session.userName,
+      products: []
+    });
+  }
+});
+
+// GET: Product detail page
+router.get('/products/:id', async (req, res) => {
+  try {
+    const productRes = await axios.get(`${FLASK_API}/api/products/${req.params.id}`);
+    res.render('product-detail', {
+      title: productRes.data.name,
+      isLoggedIn: !!req.session.userId,
+      userName: req.session.userName,
+      product: productRes.data
+    });
+  } catch (error) {
+    console.error('Error fetching product:', error.message);
+    res.redirect('/products');
+  }
 });
 
 module.exports = router;
