@@ -35,13 +35,15 @@ def create_gallery_item():
         image_url = data.get('image_url', '').strip()
         description = data.get('description', '').strip()
         category = data.get('category', '').strip()
+        is_featured = data.get('is_featured', False)
+        homepage_order = data.get('homepage_order', 0)
         
         if not all([title, image_url]):
             return jsonify({'message': 'Title and image URL are required'}), 400
         
-        query = """INSERT INTO gallery (title, image_url, description, category) 
-                   VALUES (%s, %s, %s, %s)"""
-        db.execute_query(query, (title, image_url, description, category))
+        query = """INSERT INTO gallery (title, image_url, description, category, is_featured, homepage_order) 
+                   VALUES (%s, %s, %s, %s, %s, %s)"""
+        db.execute_query(query, (title, image_url, description, category, is_featured, homepage_order))
         
         return jsonify({'message': 'Gallery item created successfully'}), 201
     except Exception as e:
@@ -57,14 +59,16 @@ def update_gallery_item(gallery_id):
         image_url = data.get('image_url', '').strip()
         description = data.get('description', '').strip()
         category = data.get('category', '').strip()
+        is_featured = data.get('is_featured', False)
+        homepage_order = data.get('homepage_order', 0)
         
         if not all([title, image_url]):
             return jsonify({'message': 'Title and image URL are required'}), 400
         
         query = """UPDATE gallery 
-                   SET title = %s, image_url = %s, description = %s, category = %s 
+                   SET title = %s, image_url = %s, description = %s, category = %s, is_featured = %s, homepage_order = %s 
                    WHERE id = %s"""
-        db.execute_query(query, (title, image_url, description, category, gallery_id))
+        db.execute_query(query, (title, image_url, description, category, is_featured, homepage_order, gallery_id))
         
         return jsonify({'message': 'Gallery item updated successfully'}), 200
     except Exception as e:

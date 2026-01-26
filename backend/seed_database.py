@@ -25,39 +25,39 @@ def seed_database():
         ("Nutrition Seminar", "https://images.unsplash.com/photo-1490645935967-10de6ba17061?w=400&h=300&fit=crop", "Educational nutrition workshops", "seminar"),
     ]
     
-    # Sample events
-    today = datetime.now().date()
-    events_data = [
-        ("Marathon 2024", "Join our annual marathon event", str(today + timedelta(days=15)), "08:00:00", "City Park", "https://images.unsplash.com/photo-1452626038306-c2be7cb36c94?w=400&h=300&fit=crop"),
-        ("Yoga Workshop", "Beginner yoga workshop with expert instructors", str(today + timedelta(days=7)), "10:00:00", "Studio A", "https://images.unsplash.com/photo-1506126613408-eca07ce68773?w=400&h=300&fit=crop"),
-        ("Fitness Challenge", "30-day fitness transformation challenge", str(today + timedelta(days=1)), "06:00:00", "All Centers", "https://images.unsplash.com/photo-1549576490-b0b4831ef60a?w=400&h=300&fit=crop"),
-        ("Swimming Lessons", "Professional swimming lessons for all levels", str(today + timedelta(days=3)), "15:00:00", "Pool Area", "https://images.unsplash.com/photo-1576610616656-d3aa5d1f4534?w=400&h=300&fit=crop"),
-    ]
+    # # Sample events
+    # today = datetime.now().date()
+    # events_data = [
+    #     ("Marathon 2024", "Join our annual marathon event", str(today + timedelta(days=15)), "08:00:00", "City Park", "https://images.unsplash.com/photo-1452626038306-c2be7cb36c94?w=400&h=300&fit=crop"),
+    #     ("Yoga Workshop", "Beginner yoga workshop with expert instructors", str(today + timedelta(days=7)), "10:00:00", "Studio A", "https://images.unsplash.com/photo-1506126613408-eca07ce68773?w=400&h=300&fit=crop"),
+    #     ("Fitness Challenge", "30-day fitness transformation challenge", str(today + timedelta(days=1)), "06:00:00", "All Centers", "https://images.unsplash.com/photo-1549576490-b0b4831ef60a?w=400&h=300&fit=crop"),
+    #     ("Swimming Lessons", "Professional swimming lessons for all levels", str(today + timedelta(days=3)), "15:00:00", "Pool Area", "https://images.unsplash.com/photo-1576610616656-d3aa5d1f4534?w=400&h=300&fit=crop"),
+    # ]
     
-    # Sample team members
-    team_data = [
-        ("John Smith", "Head Coach", "Expert fitness trainer with 15 years experience", "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200&h=200&fit=crop", "john@fusionfit.com", "+1234567890", "facebook.com/john", "instagram.com/john", "twitter.com/john"),
-        ("Sarah Johnson", "Yoga Instructor", "Certified yoga and pilates instructor", "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=200&h=200&fit=crop", "sarah@fusionfit.com", "+1234567891", "facebook.com/sarah", "instagram.com/sarah", "twitter.com/sarah"),
-        ("Mike Davis", "Nutritionist", "Registered dietitian and nutrition specialist", "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=200&h=200&fit=crop", "mike@fusionfit.com", "+1234567892", "facebook.com/mike", "instagram.com/mike", "twitter.com/mike"),
-        ("Emma Wilson", "PT Manager", "Personal training manager and certified trainer", "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=200&h=200&fit=crop", "emma@fusionfit.com", "+1234567893", "facebook.com/emma", "instagram.com/emma", "twitter.com/emma"),
-    ]
+    # # Sample team members
+    # team_data = [
+    #     ("John Smith", "Head Coach", "Expert fitness trainer with 15 years experience", "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200&h=200&fit=crop", "john@fusionfit.com", "+1234567890", "facebook.com/john", "instagram.com/john", "twitter.com/john"),
+    #     ("Sarah Johnson", "Yoga Instructor", "Certified yoga and pilates instructor", "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=200&h=200&fit=crop", "sarah@fusionfit.com", "+1234567891", "facebook.com/sarah", "instagram.com/sarah", "twitter.com/sarah"),
+    #     ("Mike Davis", "Nutritionist", "Registered dietitian and nutrition specialist", "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=200&h=200&fit=crop", "mike@fusionfit.com", "+1234567892", "facebook.com/mike", "instagram.com/mike", "twitter.com/mike"),
+    #     ("Emma Wilson", "PT Manager", "Personal training manager and certified trainer", "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=200&h=200&fit=crop", "emma@fusionfit.com", "+1234567893", "facebook.com/emma", "instagram.com/emma", "twitter.com/emma"),
+    # ]
     
-    # Sample blog posts
-    blog_data = [
-        ("Top 10 Fitness Tips for 2024", "Here are the top fitness trends and tips...", "Learn the best practices for achieving your fitness goals", 1, True, datetime.now()),
-        ("Nutrition Guide for Athletes", "Proper nutrition is key to athletic performance...", "Complete guide to eating for optimal athletic performance", 1, True, datetime.now() - timedelta(days=2)),
-        ("Yoga Benefits for Mental Health", "Discover how yoga can improve mental wellbeing...", "Explore the mental health benefits of regular yoga practice", 1, True, datetime.now() - timedelta(days=5)),
-        ("Home Workout Guide", "Effective exercises you can do at home...", "No gym? No problem! Try these home workout routines", 1, False, datetime.now()),
-    ]
+    # # Sample blog posts
+    # blog_data = [
+    #     ("Top 10 Fitness Tips for 2024", "Here are the top fitness trends and tips...", "Learn the best practices for achieving your fitness goals", 1, True, datetime.now()),
+    #     ("Nutrition Guide for Athletes", "Proper nutrition is key to athletic performance...", "Complete guide to eating for optimal athletic performance", 1, True, datetime.now() - timedelta(days=2)),
+    #     ("Yoga Benefits for Mental Health", "Discover how yoga can improve mental wellbeing...", "Explore the mental health benefits of regular yoga practice", 1, True, datetime.now() - timedelta(days=5)),
+    #     ("Home Workout Guide", "Effective exercises you can do at home...", "No gym? No problem! Try these home workout routines", 1, False, datetime.now()),
+    # ]
     
-    # Sample products
-    products_data = [
-        ("Yoga Mat", "High-quality non-slip yoga mat", 29.99, "https://images.unsplash.com/photo-1601925260368-ae2f83cf8b7f?w=300&h=200&fit=crop"),
-        ("Dumbbell Set", "Adjustable dumbbell set 5-50 lbs", 199.99, "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=300&h=200&fit=crop"),
-        ("Resistance Bands", "Set of 5 resistance bands", 24.99, "https://images.unsplash.com/photo-1517836357463-d25ddfcbf042?w=300&h=200&fit=crop"),
-        ("Water Bottle", "Sports water bottle 32 oz", 19.99, "https://images.unsplash.com/photo-1602143407151-7111542de6e9?w=300&h=200&fit=crop"),
-        ("Gym Towel", "Microfiber gym towel set", 14.99, "https://images.unsplash.com/photo-1594938298603-c8148c4dae35?w=300&h=200&fit=crop"),
-    ]
+    # # Sample products
+    # products_data = [
+    #     ("Yoga Mat", "High-quality non-slip yoga mat", 29.99, "https://images.unsplash.com/photo-1601925260368-ae2f83cf8b7f?w=300&h=200&fit=crop"),
+    #     ("Dumbbell Set", "Adjustable dumbbell set 5-50 lbs", 199.99, "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=300&h=200&fit=crop"),
+    #     ("Resistance Bands", "Set of 5 resistance bands", 24.99, "https://images.unsplash.com/photo-1517836357463-d25ddfcbf042?w=300&h=200&fit=crop"),
+    #     ("Water Bottle", "Sports water bottle 32 oz", 19.99, "https://images.unsplash.com/photo-1602143407151-7111542de6e9?w=300&h=200&fit=crop"),
+    #     ("Gym Towel", "Microfiber gym towel set", 14.99, "https://images.unsplash.com/photo-1594938298603-c8148c4dae35?w=300&h=200&fit=crop"),
+    # ]
     
     try:
         # Insert gallery data
@@ -66,39 +66,39 @@ def seed_database():
             query = "INSERT INTO gallery (title, image_url, description, category) VALUES (%s, %s, %s, %s)"
             db.execute_query(query, (title, image_url, description, category))
         
-        # Insert events data
-        print("📅 Seeding events...")
-        for title, description, date, time, location, image_url in events_data:
-            query = "INSERT INTO events (title, description, date, time, location, image_url) VALUES (%s, %s, %s, %s, %s, %s)"
-            db.execute_query(query, (title, description, date, time, location, image_url))
+        # # Insert events data
+        # print("📅 Seeding events...")
+        # for title, description, date, time, location, image_url in events_data:
+        #     query = "INSERT INTO events (title, description, date, time, location, image_url) VALUES (%s, %s, %s, %s, %s, %s)"
+        #     db.execute_query(query, (title, description, date, time, location, image_url))
         
-        # Insert team data
-        print("👥 Seeding team...")
-        for name, role, bio, image_url, email, phone, fb, ig, tw in team_data:
-            query = """INSERT INTO team (name, role, bio, image_url, email, phone, social_facebook, social_instagram, social_twitter) 
-                      VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s)"""
-            db.execute_query(query, (name, role, bio, image_url, email, phone, fb, ig, tw))
+        # # Insert team data
+        # print("👥 Seeding team...")
+        # for name, role, bio, image_url, email, phone, fb, ig, tw in team_data:
+        #     query = """INSERT INTO team (name, role, bio, image_url, email, phone, social_facebook, social_instagram, social_twitter) 
+        #               VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s)"""
+        #     db.execute_query(query, (name, role, bio, image_url, email, phone, fb, ig, tw))
         
-        # Insert blog data
-        print("📝 Seeding blog posts...")
-        for title, content, excerpt, author_id, published, pub_date in blog_data:
-            query = """INSERT INTO blog_posts (title, content, excerpt, author_id, published, published_date) 
-                      VALUES (%s, %s, %s, %s, %s, %s)"""
-            db.execute_query(query, (title, content, excerpt, author_id, published, pub_date))
+        # # Insert blog data
+        # print("📝 Seeding blog posts...")
+        # for title, content, excerpt, author_id, published, pub_date in blog_data:
+        #     query = """INSERT INTO blog_posts (title, content, excerpt, author_id, published, published_date) 
+        #               VALUES (%s, %s, %s, %s, %s, %s)"""
+        #     db.execute_query(query, (title, content, excerpt, author_id, published, pub_date))
         
-        # Insert products data
-        print("🛍️ Seeding products...")
-        for name, description, price, image_url in products_data:
-            query = "INSERT INTO products (name, description, price, image_url) VALUES (%s, %s, %s, %s)"
-            db.execute_query(query, (name, description, price, image_url))
+        # # Insert products data
+        # print("🛍️ Seeding products...")
+        # for name, description, price, image_url in products_data:
+        #     query = "INSERT INTO products (name, description, price, image_url) VALUES (%s, %s, %s, %s)"
+        #     db.execute_query(query, (name, description, price, image_url))
         
         print("\n✅ Database seeding completed successfully!")
         print("📊 Inserted:")
         print(f"   - {len(gallery_data)} gallery items")
-        print(f"   - {len(events_data)} events")
-        print(f"   - {len(team_data)} team members")
-        print(f"   - {len(blog_data)} blog posts")
-        print(f"   - {len(products_data)} products")
+        # print(f"   - {len(events_data)} events")
+        # print(f"   - {len(team_data)} team members")
+        # print(f"   - {len(blog_data)} blog posts")
+        # print(f"   - {len(products_data)} products")
         
     except Exception as e:
         print(f"❌ Error seeding database: {e}")

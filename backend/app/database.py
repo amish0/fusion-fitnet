@@ -131,6 +131,8 @@ class Database:
                 image_url VARCHAR(500) NOT NULL,
                 description TEXT,
                 category VARCHAR(50),
+                is_featured BOOLEAN DEFAULT FALSE,
+                homepage_order INT DEFAULT 0,
                 created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
             )""",
             

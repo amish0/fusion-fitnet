@@ -66,12 +66,15 @@
   <h2>Our Facility & Members</h2>
   <div class="gallery swipe" id="swipeGallery">
     <% if (gallery && gallery.length > 0) { %>
-      <% gallery.forEach(item => { %>
-        <img src="<%= item.image_url %>" alt="<%= item.title %>">
+      <% gallery.slice(0, 8).forEach((item, index) => { %>
+        <img src="<%= item.image_url %>" alt="<%= item.title %>" onclick="openGalleryModal(<%= index %>)" style="cursor: pointer;">
       <% }); %>
     <% } else { %>
-      <p>Gallery loading...</p>
+      <p>Gallery loading... Admin can feature images from the admin dashboard.</p>
     <% } %>
+  </div>
+  <div style="text-align: center; margin-top: 30px;">
+    <a href="/gallery" class="btn btn-primary">View Full Gallery</a>
   </div>
 </section>
 
@@ -169,7 +172,66 @@
 <script src="/js/blog.js"></script>
 <script src="/js/events.js"></script>
 
+<!-- Gallery Modal -->
+<div id="galleryModal" class="modal" style="display: none; position: fixed; z-index: 10000; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); align-items: center; justify-content: center;">
+  <span class="close-modal" onclick="closeGalleryModal()" style="position: absolute; top: 20px; right: 40px; color: white; font-size: 40px; font-weight: bold; cursor: pointer; z-index: 10001;">&times;</span>
+  <button class="modal-nav modal-prev" onclick="changeGalleryImage(-1)" style="position: absolute; top: 50%; left: 20px; transform: translateY(-50%); background: rgba(255,255,255,0.2); color: white; border: none; font-size: 30px; padding: 15px 20px; cursor: pointer; border-radius: 5px; z-index: 10001;">❮</button>
+  <button class="modal-nav modal-next" onclick="changeGalleryImage(1)" style="position: absolute; top: 50%; right: 20px; transform: translateY(-50%); background: rgba(255,255,255,0.2); color: white; border: none; font-size: 30px; padding: 15px 20px; cursor: pointer; border-radius: 5px; z-index: 10001;">❯</button>
+  <div class="modal-content" style="display: flex; align-items: center; justify-content: center; flex-direction: column; max-width: 90%; max-height: 90%;">
+    <img id="galleryModalImage" src="" alt="" style="max-width: 100%; max-height: 85vh; object-fit: contain;">
+    <div class="modal-caption" id="galleryModalCaption" style="color: white; text-align: center; padding: 15px; font-size: 1.2rem;"></div>
+  </div>
+</div>
+
 <script>
+const homeGalleryData = <%- JSON.stringify(gallery || []) %>;
+let currentGalleryIndex = 0;
+
+function openGalleryModal(index) {
+  currentGalleryIndex = index;
+  const modal = document.getElementById('galleryModal');
+  const modalImg = document.getElementById('galleryModalImage');
+  const caption = document.getElementById('galleryModalCaption');
+  
+  modal.style.display = 'flex';
+  modalImg.src = homeGalleryData[index].image_url;
+  caption.textContent = homeGalleryData[index].title;
+  document.body.style.overflow = 'hidden';
+}
+
+function closeGalleryModal() {
+  const modal = document.getElementById('galleryModal');
+  modal.style.display = 'none';
+  document.body.style.overflow = 'auto';
+}
+
+function changeGalleryImage(direction) {
+  currentGalleryIndex += direction;
+  const displayLimit = 8;
+  const maxIndex = Math.min(homeGalleryData.length, displayLimit) - 1;
+  
+  if (currentGalleryIndex < 0) {
+    currentGalleryIndex = maxIndex;
+  } else if (currentGalleryIndex > maxIndex) {
+    currentGalleryIndex = 0;
+  }
+  
+  const modalImg = document.getElementById('galleryModalImage');
+  const caption = document.getElementById('galleryModalCaption');
+  modalImg.src = homeGalleryData[currentGalleryIndex].image_url;
+  caption.textContent = homeGalleryData[currentGalleryIndex].title;
+}
+
+// Keyboard navigation for gallery modal
+document.addEventListener('keydown', (e) => {
+  const modal = document.getElementById('galleryModal');
+  if (modal && modal.style.display === 'flex') {
+    if (e.key === 'Escape') closeGalleryModal();
+    if (e.key === 'ArrowLeft') changeGalleryImage(-1);
+    if (e.key === 'ArrowRight') changeGalleryImage(1);
+  }
+});
+
 function submitContact(e) {
   e.preventDefault();
   const formData = new FormData(document.getElementById('contactForm'));

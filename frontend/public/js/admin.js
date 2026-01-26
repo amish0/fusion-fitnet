@@ -98,24 +98,27 @@ async function loadDashboardStats() {
 
 async function loadGalleryList() {
     try {
-        const response = await fetch(`${API_BASE}/gallery`);
+        const response = await fetch(`${API_BASE}/gallery?page=1&per_page=1000`);
         if (response.ok) {
-            const gallery = await response.json();
+            const data = await response.json();
+            const gallery = data.items || data || [];
             const listHtml = gallery.map(item => `
                 <tr>
                     <td>${item.title}</td>
                     <td>${item.category || '-'}</td>
+                    <td><span class="badge ${item.is_featured ? 'badge-success' : 'badge-secondary'}">${item.is_featured ? 'Featured' : 'Not Featured'}</span></td>
+                    <td>${item.is_featured ? item.homepage_order : '-'}</td>
                     <td><img src="${item.image_url}" style="width: 50px; height: 50px; object-fit: cover; border-radius: 5px;"></td>
                     <td>
                         <div class="action-buttons">
-                            <button class="btn-danger btn-small" onclick="editGallery(${item.id}, '${item.title}', '${item.image_url}', '${item.description || ''}', '${item.category || ''}')">Edit</button>
+                            <button class="btn-primary btn-small" onclick='editGallery(${JSON.stringify(item)})'>Edit</button>
                             <button class="btn-danger btn-small" onclick="deleteGallery(${item.id})">Delete</button>
                         </div>
                     </td>
                 </tr>
             `).join('');
             
-            document.getElementById('gallery-list').innerHTML = listHtml || '<tr><td colspan="4" style="text-align: center;">No gallery items</td></tr>';
+            document.getElementById('gallery-list').innerHTML = listHtml || '<tr><td colspan="6" style="text-align: center;">No gallery items</td></tr>';
         }
     } catch (error) {
         console.error('Error loading gallery:', error);
@@ -126,16 +129,20 @@ function openAddGalleryModal() {
     galleryEditId = null;
     document.getElementById('gallery-modal-title').textContent = 'Add Gallery Item';
     document.getElementById('gallery-form').reset();
+    document.getElementById('gallery-featured').checked = false;
+    document.getElementById('gallery-order').value = 0;
     document.getElementById('gallery-modal').classList.add('active');
 }
 
-function editGallery(id, title, image, description, category) {
-    galleryEditId = id;
+function editGallery(item) {
+    galleryEditId = item.id;
     document.getElementById('gallery-modal-title').textContent = 'Edit Gallery Item';
-    document.getElementById('gallery-title').value = title;
-    document.getElementById('gallery-image').value = image;
-    document.getElementById('gallery-description').value = description;
-    document.getElementById('gallery-category').value = category;
+    document.getElementById('gallery-title').value = item.title;
+    document.getElementById('gallery-image').value = item.image_url;
+    document.getElementById('gallery-description').value = item.description || '';
+    document.getElementById('gallery-category').value = item.category || '';
+    document.getElementById('gallery-featured').checked = item.is_featured || false;
+    document.getElementById('gallery-order').value = item.homepage_order || 0;
     document.getElementById('gallery-modal').classList.add('active');
 }
 
@@ -151,7 +158,9 @@ async function saveGallery(e) {
         title: document.getElementById('gallery-title').value,
         image_url: document.getElementById('gallery-image').value,
         description: document.getElementById('gallery-description').value,
-        category: document.getElementById('gallery-category').value
+        category: document.getElementById('gallery-category').value,
+        is_featured: document.getElementById('gallery-featured').checked,
+        homepage_order: parseInt(document.getElementById('gallery-order').value) || 0
     };
     
     try {

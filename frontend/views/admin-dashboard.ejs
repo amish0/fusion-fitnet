@@ -333,6 +333,24 @@
             border: 1px solid #f5c6cb;
         }
         
+        .badge {
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+        
+        .badge-success {
+            background: #d4edda;
+            color: #155724;
+        }
+        
+        .badge-secondary {
+            background: #e2e3e5;
+            color: #383d41;
+        }
+        
         @media (max-width: 768px) {
             .sidebar {
                 width: 100%;
@@ -420,12 +438,14 @@
                         <tr>
                             <th>Title</th>
                             <th>Category</th>
+                            <th>Featured Status</th>
+                            <th>Homepage Order</th>
                             <th>Image</th>
                             <th>Actions</th>
                         </tr>
                     </thead>
                     <tbody id="gallery-list">
-                        <tr><td colspan="4" style="text-align: center; padding: 30px;">Loading...</td></tr>
+                        <tr><td colspan="6" style="text-align: center; padding: 30px;">Loading...</td></tr>
                     </tbody>
                 </table>
             </section>
@@ -497,6 +517,15 @@
                 <div class="form-group">
                     <label for="gallery-category">Category</label>
                     <input type="text" id="gallery-category">
+                </div>
+                <div class="form-group" style="display: flex; align-items: center; gap: 10px;">
+                    <input type="checkbox" id="gallery-featured" style="width: auto;">
+                    <label for="gallery-featured" style="margin: 0;">Feature on Homepage (Show on main page)</label>
+                </div>
+                <div class="form-group">
+                    <label for="gallery-order">Homepage Order (1-8, lower number shows first)</label>
+                    <input type="number" id="gallery-order" min="0" max="8" value="0">
+                    <small style="color: #666; display: block; margin-top: 5px;">Only featured images appear on homepage. Order determines position.</small>
                 </div>
                 <button type="submit" class="btn-primary" style="width: 100%;">Save Gallery Item</button>
             </form>

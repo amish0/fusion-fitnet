@@ -17,13 +17,44 @@ def get_visitors():
 
 @content_bp.route('/gallery', methods=['GET'])
 def get_gallery():
-    """Get all gallery images from database."""
+    """Get gallery images from database with pagination."""
     try:
-        gallery_data = db.fetch_all('SELECT * FROM gallery ORDER BY created_at DESC')
-        return jsonify(gallery_data or []), 200
+        page = request.args.get('page', 1, type=int)
+        per_page = 50
+        offset = (page - 1) * per_page
+        
+        # Get total count
+        count_result = db.fetch_one('SELECT COUNT(*) as total FROM gallery')
+        total = count_result['total'] if count_result else 0
+        
+        # Get paginated results
+        gallery_data = db.fetch_all(
+            'SELECT * FROM gallery ORDER BY created_at DESC LIMIT %s OFFSET %s',
+            (per_page, offset)
+        )
+        
+        return jsonify({
+            'items': gallery_data or [],
+            'page': page,
+            'per_page': per_page,
+            'total': total,
+            'total_pages': (total + per_page - 1) // per_page
+        }), 200
     except Exception as e:
         print(f"Error fetching gallery: {e}")
         return jsonify({'message': f'Error fetching gallery: {str(e)}'}), 500
+
+@content_bp.route('/gallery/featured', methods=['GET'])
+def get_featured_gallery():
+    """Get featured gallery images for homepage (max 8)."""
+    try:
+        gallery_data = db.fetch_all(
+            'SELECT * FROM gallery WHERE is_featured = TRUE ORDER BY homepage_order ASC, created_at DESC LIMIT 8'
+        )
+        return jsonify(gallery_data or []), 200
+    except Exception as e:
+        print(f"Error fetching featured gallery: {e}")
+        return jsonify({'message': f'Error fetching featured gallery: {str(e)}'}), 500
 
 @content_bp.route('/gallery/<int:id>', methods=['GET'])
 def get_gallery_item(id):
