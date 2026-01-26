@@ -400,7 +400,7 @@ def update_settings():
     """Update site settings (hero video, messaging)."""
     try:
         data = request.get_json() or {}
-        allowed_keys = ['hero_video_url', 'hero_video_poster', 'hero_headline', 'hero_subheadline', 'cta_text', 'cta_link']
+        allowed_keys = ['hero_video_url', 'hero_video_poster', 'hero_fallback_image', 'hero_headline', 'hero_subheadline', 'cta_text', 'cta_link']
         for key, value in data.items():
             if key not in allowed_keys:
                 continue

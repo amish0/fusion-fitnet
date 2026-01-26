@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Site Settings - Fusion FitNet Admin</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f5f5f5;
+            color: #333;
+        }
+        
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .header {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        .header h1 {
+            color: #667eea;
+            margin-bottom: 5px;
+        }
+        
+        .settings-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+            gap: 20px;
+        }
+        
+        .settings-card {
+            background: white;
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        .settings-card h2 {
+            color: #667eea;
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #333;
+        }
+        
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 10px 12px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-family: inherit;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+        
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+        
+        .form-group textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+        
+        .btn {
+            background: #667eea;
+            color: white;
+            border: none;
+            padding: 10px 24px;
+            border-radius: 5px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        
+        .btn:hover {
+            background: #5568d3;
+        }
+        
+        .btn-success {
+            background: #10b981;
+        }
+        
+        .btn-success:hover {
+            background: #059669;
+        }
+        
+        .alert {
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            display: none;
+        }
+        
+        .alert-success {
+            background: #d1fae5;
+            color: #065f46;
+            border-left: 4px solid #10b981;
+            display: block;
+        }
+        
+        .alert-error {
+            background: #fee2e2;
+            color: #7f1d1d;
+            border-left: 4px solid #f5576c;
+            display: block;
+        }
+        
+        .preview-container {
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 2px solid #eee;
+        }
+        
+        .preview-item {
+            background: #f9f9f9;
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 10px;
+        }
+        
+        .preview-item strong {
+            color: #667eea;
+            display: block;
+            margin-bottom: 5px;
+        }
+        
+        .video-preview {
+            max-width: 100%;
+            height: auto;
+            border-radius: 5px;
+            margin-top: 10px;
+        }
+        
+        .back-link {
+            display: inline-block;
+            margin-bottom: 20px;
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 600;
+        }
+        
+        .back-link:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 768px) {
+            .settings-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="/dashboard" class="back-link">← Back to Dashboard</a>
+        
+        <div class="header">
+            <h1>⚙️ Site Settings</h1>
+            <p>Manage hero video, headlines, and site-wide configurations</p>
+        </div>
+        
+        <div id="alert-container"></div>
+        
+        <div class="settings-grid">
+            <!-- Hero Video Settings -->
+            <div class="settings-card">
+                <h2><i class="fas fa-video"></i> Hero Video</h2>
+                <form id="heroVideoForm">
+                    <div class="form-group">
+                        <label for="hero_video_url">Video URL</label>
+                        <input 
+                            type="text" 
+                            id="hero_video_url" 
+                            name="hero_video_url" 
+                            placeholder="https://example.com/video.mp4"
+                            value=""
+                        >
+                        <small style="color: #666; margin-top: 5px; display: block;">Direct URL to MP4 or WebM video file</small>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="hero_video_poster">Poster Image URL</label>
+                        <input 
+                            type="text" 
+                            id="hero_video_poster" 
+                            name="hero_video_poster" 
+                            placeholder="https://example.com/poster.jpg"
+                            value=""
+                        >
+                        <small style="color: #666; margin-top: 5px; display: block;">Image shown before video plays</small>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="hero_fallback_image">Fallback Background Image</label>
+                        <input 
+                            type="text" 
+                            id="hero_fallback_image" 
+                            name="hero_fallback_image" 
+                            placeholder="https://example.com/fallback.jpg"
+                            value=""
+                        >
+                        <small style="color: #666; margin-top: 5px; display: block;">Image shown when no video is available</small>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-success">Save Video Settings</button>
+                </form>
+            </div>
+            
+            <!-- Hero Headlines -->
+            <div class="settings-card">
+                <h2><i class="fas fa-heading"></i> Hero Headlines</h2>
+                <form id="heroHeadlineForm">
+                    <div class="form-group">
+                        <label for="hero_headline">Main Headline</label>
+                        <input 
+                            type="text" 
+                            id="hero_headline" 
+                            name="hero_headline" 
+                            placeholder="Train Smart. Move Strong. Recover Faster."
+                            value=""
+                        >
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="hero_subheadline">Sub-headline</label>
+                        <textarea 
+                            id="hero_subheadline" 
+                            name="hero_subheadline"
+                            placeholder="Blending coaching, community, and data to deliver results you can measure."
+                        ></textarea>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-success">Save Headlines</button>
+                </form>
+            </div>
+            
+            <!-- CTA Settings -->
+            <div class="settings-card">
+                <h2><i class="fas fa-megaphone"></i> Call-to-Action</h2>
+                <form id="ctaForm">
+                    <div class="form-group">
+                        <label for="cta_text">CTA Text</label>
+                        <input 
+                            type="text" 
+                            id="cta_text" 
+                            name="cta_text" 
+                            placeholder="Book a consult and get a personalized plan."
+                            value=""
+                        >
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="cta_link">CTA Link</label>
+                        <input 
+                            type="text" 
+                            id="cta_link" 
+                            name="cta_link" 
+                            placeholder="/contact"
+                            value=""
+                        >
+                    </div>
+                    
+                    <button type="submit" class="btn btn-success">Save CTA</button>
+                </form>
+            </div>
+            
+            <!-- Current Settings Preview -->
+            <div class="settings-card">
+                <h2><i class="fas fa-eye"></i> Current Settings</h2>
+                <div class="preview-container" id="settingsPreview">
+                    <p style="color: #999; text-align: center;">Loading current settings...</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        const FLASK_API = 'http://localhost:5000';
+        const FRONTEND_API = window.location.origin; // Use same origin
+        
+        // Load current settings on page load
+        document.addEventListener('DOMContentLoaded', loadSettings);
+        
+        async function loadSettings() {
+            try {
+                console.log('Loading settings...');
+                // Try to fetch from frontend proxy first, fallback to Flask
+                let response;
+                try {
+                    response = await fetch(`${FRONTEND_API}/api/settings`);
+                } catch (e) {
+                    console.log('Frontend proxy failed, trying Flask API directly');
+                    response = await fetch(`${FLASK_API}/api/settings`);
+                }
+                
+                if (!response.ok) {
+                    throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+                }
+                
+                const settings = await response.json();
+                console.log('Settings loaded:', settings);
+                
+                // Populate forms with current values
+                const elements = {
+                    hero_video_url: document.getElementById('hero_video_url'),
+                    hero_video_poster: document.getElementById('hero_video_poster'),
+                    hero_fallback_image: document.getElementById('hero_fallback_image'),
+                    hero_headline: document.getElementById('hero_headline'),
+                    hero_subheadline: document.getElementById('hero_subheadline'),
+                    cta_text: document.getElementById('cta_text'),
+                    cta_link: document.getElementById('cta_link')
+                };
+                
+                for (const [key, element] of Object.entries(elements)) {
+                    if (element) {
+                        element.value = settings[key] || '';
+                    }
+                }
+                
+                // Display preview
+                displaySettingsPreview(settings);
+            } catch (error) {
+                console.error('Error loading settings:', error);
+                showAlert(`Error loading settings: ${error.message}. Try refreshing the page.`, 'error');
+                // Show empty preview to prevent blank page
+                displaySettingsPreview({});
+            }
+        }
+        
+        function displaySettingsPreview(settings) {
+            const preview = document.getElementById('settingsPreview');
+            preview.innerHTML = `
+                <div class="preview-item">
+                    <strong>Hero Video URL:</strong>
+                    ${settings.hero_video_url ? `<code>${settings.hero_video_url}</code>` : '<em style="color: #999;">Not set</em>'}
+                </div>
+                <div class="preview-item">
+                    <strong>Hero Poster:</strong>
+                    ${settings.hero_video_poster ? `<code>${settings.hero_video_poster}</code>` : '<em style="color: #999;">Not set</em>'}
+                </div>
+                <div class="preview-item">
+                    <strong>Fallback Image:</strong>
+                    ${settings.hero_fallback_image ? `<code>${settings.hero_fallback_image}</code>` : '<em style="color: #999;">Not set</em>'}
+                </div>
+                <div class="preview-item">
+                    <strong>Main Headline:</strong>
+                    <p>${settings.hero_headline || 'Not set'}</p>
+                </div>
+                <div class="preview-item">
+                    <strong>Sub-headline:</strong>
+                    <p>${settings.hero_subheadline || 'Not set'}</p>
+                </div>
+                <div class="preview-item">
+                    <strong>CTA Text:</strong>
+                    <p>${settings.cta_text || 'Not set'}</p>
+                </div>
+                <div class="preview-item">
+                    <strong>CTA Link:</strong>
+                    <code>${settings.cta_link || 'Not set'}</code>
+                </div>
+            `;
+        }
+        
+        // Form submissions
+        document.getElementById('heroVideoForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            await saveSetting('hero_video_url', document.getElementById('hero_video_url').value);
+            await saveSetting('hero_video_poster', document.getElementById('hero_video_poster').value);
+            await saveSetting('hero_fallback_image', document.getElementById('hero_fallback_image').value);
+        });
+        
+        document.getElementById('heroHeadlineForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            await saveSetting('hero_headline', document.getElementById('hero_headline').value);
+            await saveSetting('hero_subheadline', document.getElementById('hero_subheadline').value);
+        });
+        
+        document.getElementById('ctaForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            await saveSetting('cta_text', document.getElementById('cta_text').value);
+            await saveSetting('cta_link', document.getElementById('cta_link').value);
+        });
+        
+        async function saveSetting(key, value) {
+            try {
+                console.log('Saving setting:', key, value);
+                const response = await fetch(`${FRONTEND_API}/admin/settings`, {
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${localStorage.getItem('token') || ''}`
+                    },
+                    body: JSON.stringify({ [key]: value })
+                });
+                
+                if (response.ok) {
+                    showAlert('Settings saved successfully!', 'success');
+                    // Reload settings to update preview
+                    setTimeout(loadSettings, 500);
+                } else {
+                    const error = await response.json().catch(() => ({}));
+                    showAlert(error.message || `Error saving settings (${response.status})`, 'error');
+                }
+            } catch (error) {
+                console.error('Error saving setting:', error);
+                showAlert('Error saving settings: ' + error.message, 'error');
+            }
+        }
+        
+        function showAlert(message, type) {
+            const container = document.getElementById('alert-container');
+            const alertDiv = document.createElement('div');
+            alertDiv.className = `alert alert-${type}`;
+            alertDiv.textContent = message;
+            alertDiv.style.display = 'block';
+            
+            container.innerHTML = '';
+            container.appendChild(alertDiv);
+            
+            if (type === 'success') {
+                setTimeout(() => alertDiv.remove(), 4000);
+            }
+        }
+    </script>
+</body>
+</html>

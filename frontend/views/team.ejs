@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= title %></title>
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Poppins:wght@400;600&display=swap">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+</head>
+<body>
+
+<header>
+  <h1>Fusion FitNet</h1>
+  <p class="tagline">Fitness • Strength • Transformation</p>
+</header>
+
+<nav class="navbar">
+  <div class="logo">Fusion FitNet</div>
+  <div class="menu-toggle" onclick="toggleMenu()">☰</div>
+
+  <div class="nav-links" id="navLinks">
+    <a href="/#features">Features</a>
+    <a href="/#gallery">Gallery</a>
+    <a href="/#events">Events</a>
+    <a href="/#products">Products</a>
+    <a href="/team">Our Team</a>
+    <a href="/contact">Contact</a>
+
+    <% if (isLoggedIn) { %>
+      <a href="/cart">🛒 Cart</a>
+      <a href="/dashboard" class="btn-login">My Account</a>
+      <a href="/auth/logout" class="btn-signup">Logout</a>
+    <% } else { %>
+      <a href="/auth/login" class="btn-login">Login</a>
+      <a href="/auth/signup" class="btn-signup">Sign Up</a>
+    <% } %>
+  </div>
+</nav>
+
+<section class="team-hero">
+  <div class="hero-content">
+    <p class="eyebrow">Expert Coaching</p>
+    <h1>Meet the team that powers your transformation.</h1>
+    <p class="lead">Certified coaches blending sports science, movement expertise, and accountability to help you train smarter.</p>
+  </div>
+</section>
+
+<section id="team" class="team-section">
+  <div class="team-container">
+    <% if (team && team.length > 0) { %>
+      <% team.forEach(member => { %>
+        <div class="team-card">
+          <div class="team-image">
+            <img src="<%= member.image_url %>" alt="<%= member.name %>">
+            <div class="team-overlay">
+              <div class="social-links">
+                <% if (member.social_facebook) { %>
+                  <a href="<%= member.social_facebook %>" target="_blank"><i class="fab fa-facebook"></i></a>
+                <% } %>
+                <% if (member.social_instagram) { %>
+                  <a href="<%= member.social_instagram %>" target="_blank"><i class="fab fa-instagram"></i></a>
+                <% } %>
+                <% if (member.social_twitter) { %>
+                  <a href="<%= member.social_twitter %>" target="_blank"><i class="fab fa-twitter"></i></a>
+                <% } %>
+              </div>
+            </div>
+          </div>
+          <div class="team-info">
+            <h3><%= member.name %></h3>
+            <p class="team-role"><%= member.role %></p>
+            <p class="team-bio"><%= member.bio %></p>
+            <div class="team-contact">
+              <% if (member.email) { %>
+                <a href="mailto:<%= member.email %>"><i class="fas fa-envelope"></i></a>
+              <% } %>
+              <% if (member.phone) { %>
+                <a href="tel:<%= member.phone %>"><i class="fas fa-phone"></i></a>
+              <% } %>
+            </div>
+          </div>
+        </div>
+      <% }); %>
+    <% } else { %>
+      <p style="text-align: center; color: #666; grid-column: 1/-1;">Team members coming soon!</p>
+    <% } %>
+  </div>
+</section>
+
+<section class="cta-band">
+  <div class="cta-content">
+    <div>
+      <p class="eyebrow">Ready to get started?</p>
+      <h2>Book a consult and get a personalized plan.</h2>
+      <p class="lead">Tell us your goals. We'll map training, recovery, and gear for your next milestone.</p>
+    </div>
+    <div class="cta-actions">
+      <a class="btn btn-primary" href="/contact">Talk to a Coach</a>
+      <a class="btn btn-ghost" href="/products">Browse Gear</a>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="footer-left">
+    <h3>Fusion FitNet</h3>
+    <p>Fitness • Strength • Transformation</p>
+  </div>
+  <div class="footer-contact">
+    <h4>Contact</h4>
+    <p>123 Fitness Street, Gym City</p>
+    <p>+1 (555) 123-4567</p>
+    <p><a href="mailto:info@fusionfitnet.com">info@fusionfitnet.com</a></p>
+    <a href="/contact" class="footer-link">Contact Page</a>
+  </div>
+  <div class="footer-links">
+    <h4>Explore</h4>
+    <a href="/#about">About</a>
+    <a href="/#products">Featured Products</a>
+    <a href="/#events">Events</a>
+    <a href="/#gallery">Gallery</a>
+    <a href="/team">Our Team</a>
+  </div>
+</footer>
+
+<script src="/js/main.js"></script>
+<script src="/js/team.js"></script>
+
+</body>
+</html>

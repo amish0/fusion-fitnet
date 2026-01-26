@@ -24,6 +24,7 @@
     <a href="/#gallery">Gallery</a>
     <a href="/#events">Events</a>
     <a href="/#products">Products</a>
+    <a href="/team">Our Team</a>
     <a href="/contact">Contact</a>
 
     <% if (isLoggedIn) { %>
@@ -42,7 +43,7 @@
     <% if (settings && settings.hero_video_url) { %>
       <video class="hero-video" src="<%= settings.hero_video_url %>" <%= settings.hero_video_poster ? `poster="${settings.hero_video_poster}"` : '' %> autoplay muted loop playsinline></video>
     <% } else { %>
-      <div class="hero-fallback"></div>
+      <div class="hero-fallback" style="<% if (settings && settings.hero_fallback_image) { %>background-image: url('<%= settings.hero_fallback_image %>'), radial-gradient(circle at 30% 30%, rgba(255,94,20,0.25), transparent 40%);<% } %>"></div>
     <% } %>
     <div class="hero-gradient"></div>
   </div>
@@ -138,19 +139,54 @@
 </section>
 
 <section id="gallery">
-  <h2>Our Facility & Members</h2>
-  <div class="gallery swipe" id="swipeGallery">
-    <% if (gallery && gallery.length > 0) { %>
-      <% gallery.slice(0, 8).forEach((item, index) => { %>
-        <img src="<%= item.image_url %>" alt="<%= item.title %>" onclick="openGalleryModal(<%= index %>)" style="cursor: pointer;">
-      <% }); %>
-    <% } else { %>
-      <p>Gallery loading... Admin can feature images from the admin dashboard.</p>
-    <% } %>
-  </div>
-  <div style="text-align: center; margin-top: 30px;">
+  <div class="gallery-header">
+    <div>
+      <p class="eyebrow">Workspace & Community</p>
+      <h2>Seminar and Driven members.</h2>
+      <p class="section-lead">See where the work happens—equipped for every goal, designed for focus.</p>
+    </div>
     <a href="/gallery" class="btn btn-primary">View Full Gallery</a>
   </div>
+  
+  <% if (gallery && gallery.length > 0) { %>
+    <!-- Featured Slideshow -->
+    <div class="gallery-slideshow">
+      <div class="slideshow-container">
+        <% gallery.slice(0, 4).forEach((item, index) => { %>
+          <div class="slide <%= index === 0 ? 'active' : '' %>">
+            <img src="<%= item.image_url %>" alt="<%= item.title %>" onclick="openGalleryModal(<%= index %>)">
+            <div class="slide-info">
+              <h3><%= item.title %></h3>
+              <% if (item.description) { %>
+                <p><%= item.description %></p>
+              <% } %>
+            </div>
+          </div>
+        <% }); %>
+        <button class="slide-prev" onclick="changeSlide(-1)"><i class="fas fa-chevron-left"></i></button>
+        <button class="slide-next" onclick="changeSlide(1)"><i class="fas fa-chevron-right"></i></button>
+      </div>
+      <div class="slide-indicators">
+        <% gallery.slice(0, 4).forEach((item, index) => { %>
+          <span class="indicator <%= index === 0 ? 'active' : '' %>" onclick="goToSlide(<%= index %>)"></span>
+        <% }); %>
+      </div>
+    </div>
+
+    <!-- Gallery Grid -->
+    <div class="gallery-grid-modern">
+      <% gallery.slice(4, 8).forEach((item, index) => { %>
+        <div class="gallery-grid-item" onclick="openGalleryModal(<%= index + 4 %>)">
+          <img src="<%= item.image_url %>" alt="<%= item.title %>">
+          <div class="grid-item-overlay">
+            <span class="view-icon"><i class="fas fa-eye"></i></span>
+          </div>
+        </div>
+      <% }); %>
+    </div>
+  <% } else { %>
+    <p style="text-align: center; color: #666;">Gallery loading... Admin can feature images from the admin dashboard.</p>
+  <% } %>
 </section>
 
 <section id="events">
@@ -245,6 +281,10 @@
   <div class="footer-left">
     <h3>Fusion FitNet</h3>
     <p>Fitness • Strength • Transformation</p>
+    <div class="footer-social">
+      <a href="https://www.facebook.com/profile.php?id=61585748620624" target="_blank" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+      <a href="https://instagram.com" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+    </div>
   </div>
   <div class="footer-contact">
     <h4>Contact</h4>

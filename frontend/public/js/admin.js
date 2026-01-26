@@ -44,8 +44,15 @@ function logout() {
 function setupNavigation() {
     document.querySelectorAll('.nav-link').forEach(link => {
         link.addEventListener('click', (e) => {
+            // Check if this is an external link (like Settings)
+            if (link.href && link.href.includes('/admin/settings')) {
+                return; // Allow default navigation
+            }
+            
             e.preventDefault();
             const section = link.dataset.section;
+            
+            if (!section) return; // Skip if no section data
             
             // Update active link
             document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
@@ -53,7 +60,10 @@ function setupNavigation() {
             
             // Show section
             document.querySelectorAll('.content-section').forEach(s => s.classList.remove('active'));
-            document.getElementById(section).classList.add('active');
+            const sectionElement = document.getElementById(section);
+            if (sectionElement) {
+                sectionElement.classList.add('active');
+            }
             
             // Load data for section
             if (section === 'gallery') loadGalleryList();

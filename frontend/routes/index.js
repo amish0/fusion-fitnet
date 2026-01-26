@@ -82,6 +82,27 @@ router.get('/contact', (req, res) => {
   });
 });
 
+// GET: Team page
+router.get('/team', async (req, res) => {
+  try {
+    const teamRes = await axios.get(`${FLASK_API}/api/team`);
+    res.render('team', {
+      title: 'Our Team',
+      isLoggedIn: !!req.session.userId,
+      userName: req.session.userName,
+      team: teamRes.data
+    });
+  } catch (error) {
+    console.error('Error fetching team:', error.message);
+    res.render('team', {
+      title: 'Our Team',
+      isLoggedIn: !!req.session.userId,
+      userName: req.session.userName,
+      team: []
+    });
+  }
+});
+
 // GET: Products page
 router.get('/products', async (req, res) => {
   try {
@@ -116,6 +137,27 @@ router.get('/products/:id', async (req, res) => {
   } catch (error) {
     console.error('Error fetching product:', error.message);
     res.redirect('/products');
+  }
+});
+
+// API Proxy routes for client-side JavaScript
+router.get('/api/events', async (req, res) => {
+  try {
+    const response = await axios.get(`${FLASK_API}/api/events`);
+    res.json(response.data);
+  } catch (error) {
+    console.error('Error proxying events:', error.message);
+    res.status(500).json([]);
+  }
+});
+
+router.get('/api/settings', async (req, res) => {
+  try {
+    const response = await axios.get(`${FLASK_API}/api/settings`);
+    res.json(response.data);
+  } catch (error) {
+    console.error('Error proxying settings:', error.message);
+    res.status(500).json({});
   }
 });
 
