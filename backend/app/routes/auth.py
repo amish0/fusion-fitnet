@@ -42,13 +42,17 @@ def signup():
         db.execute_query(query, (name, email, hashed_password))
         
         # Fetch the created user
-        user = db.fetch_one('SELECT id, name, email FROM users WHERE email = %s', (email,))
+        user = db.fetch_one('SELECT id, name, email, is_admin FROM users WHERE email = %s', (email,))
+        
+        if not user:
+            return jsonify({'message': 'User created but failed to retrieve user data'}), 500
         
         return jsonify({
             'message': 'User created successfully',
             'user_id': user['id'],
             'name': user['name'],
-            'email': user['email']
+            'email': user['email'],
+            'is_admin': user['is_admin']
         }), 201
     
     except Exception as e:
@@ -66,7 +70,7 @@ def login():
             return jsonify({'message': 'Email and password are required'}), 400
         
         # Fetch user
-        user = db.fetch_one('SELECT id, name, email, password FROM users WHERE email = %s', (email,))
+        user = db.fetch_one('SELECT id, name, email, password, is_admin FROM users WHERE email = %s', (email,))
         
         if not user or not check_password_hash(user['password'], password):
             return jsonify({'message': 'Invalid email or password'}), 401
@@ -75,7 +79,8 @@ def login():
             'message': 'Login successful',
             'user_id': user['id'],
             'name': user['name'],
-            'email': user['email']
+            'email': user['email'],
+            'is_admin': user['is_admin']
         }), 200
     
     except Exception as e:

@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - Fusion FitNet</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f5f5f5;
+            color: #333;
+        }
+        
+        .admin-container {
+            display: flex;
+            min-height: 100vh;
+        }
+        
+        .sidebar {
+            width: 250px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px;
+            box-shadow: 2px 0 10px rgba(0,0,0,0.1);
+            position: fixed;
+            height: 100vh;
+            overflow-y: auto;
+        }
+        
+        .sidebar h2 {
+            font-size: 20px;
+            margin-bottom: 30px;
+            border-bottom: 2px solid rgba(255,255,255,0.3);
+            padding-bottom: 15px;
+        }
+        
+        .sidebar nav {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        
+        .sidebar a {
+            display: block;
+            padding: 12px 15px;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background 0.3s;
+        }
+        
+        .sidebar a:hover,
+        .sidebar a.active {
+            background: rgba(255,255,255,0.2);
+        }
+        
+        .main-content {
+            margin-left: 250px;
+            flex: 1;
+            padding: 20px;
+        }
+        
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        .header h1 {
+            font-size: 28px;
+            color: #667eea;
+        }
+        
+        .user-info {
+            text-align: right;
+        }
+        
+        .user-info p {
+            margin: 5px 0;
+            font-size: 14px;
+            color: #666;
+        }
+        
+        .logout-btn {
+            background: #f5576c;
+            color: white;
+            border: none;
+            padding: 8px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: background 0.3s;
+        }
+        
+        .logout-btn:hover {
+            background: #e03a50;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .stat-card {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+        
+        .stat-card h3 {
+            color: #667eea;
+            font-size: 32px;
+            margin-bottom: 10px;
+        }
+        
+        .stat-card p {
+            color: #666;
+            font-size: 14px;
+        }
+        
+        .content-section {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+            display: none;
+        }
+        
+        .content-section.active {
+            display: block;
+        }
+        
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #f0f0f0;
+        }
+        
+        .section-header h2 {
+            color: #667eea;
+            font-size: 22px;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+        
+        .btn-danger {
+            background: #f5576c;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 12px;
+            transition: background 0.3s;
+        }
+        
+        .btn-danger:hover {
+            background: #e03a50;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        
+        table thead {
+            background: #f9f9f9;
+        }
+        
+        table th {
+            padding: 12px;
+            text-align: left;
+            font-weight: 600;
+            color: #667eea;
+            border-bottom: 2px solid #e0e0e0;
+        }
+        
+        table td {
+            padding: 12px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        
+        table tr:hover {
+            background: #f9f9f9;
+        }
+        
+        .action-buttons {
+            display: flex;
+            gap: 10px;
+        }
+        
+        .btn-small {
+            padding: 5px 10px;
+            font-size: 12px;
+        }
+        
+        .form-group {
+            margin-bottom: 15px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 600;
+            color: #333;
+        }
+        
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-family: inherit;
+            font-size: 14px;
+        }
+        
+        .form-group textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+        
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 5px rgba(102, 126, 234, 0.3);
+        }
+        
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+        }
+        
+        .modal.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .modal-content {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            max-width: 500px;
+            width: 90%;
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+        
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #f0f0f0;
+        }
+        
+        .modal-header h2 {
+            color: #667eea;
+        }
+        
+        .close-btn {
+            background: none;
+            border: none;
+            font-size: 28px;
+            cursor: pointer;
+            color: #999;
+        }
+        
+        .close-btn:hover {
+            color: #333;
+        }
+        
+        .alert {
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+        
+        .alert-success {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        
+        .alert-error {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+        
+        @media (max-width: 768px) {
+            .sidebar {
+                width: 100%;
+                height: auto;
+                position: relative;
+            }
+            
+            .main-content {
+                margin-left: 0;
+            }
+            
+            .header {
+                flex-direction: column;
+                text-align: center;
+                gap: 15px;
+            }
+            
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="admin-container">
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar">
+            <h2>Admin Panel</h2>
+            <nav>
+                <a href="#dashboard" class="nav-link active" data-section="dashboard">📊 Dashboard</a>
+                <a href="#gallery" class="nav-link" data-section="gallery">🖼️ Gallery</a>
+                <a href="#events" class="nav-link" data-section="events">📅 Events</a>
+                <a href="#team" class="nav-link" data-section="team">👥 Team</a>
+            </nav>
+        </aside>
+        
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Header -->
+            <div class="header">
+                <h1>Admin Dashboard</h1>
+                <div class="user-info">
+                    <p id="user-name"></p>
+                    <p id="user-email"></p>
+                    <button class="logout-btn" onclick="logout()">Logout</button>
+                </div>
+            </div>
+            
+            <!-- Alert Messages -->
+            <div id="alert-container"></div>
+            
+            <!-- Dashboard Section -->
+            <section id="dashboard" class="content-section active">
+                <div class="section-header">
+                    <h2>Dashboard Overview</h2>
+                </div>
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <h3 id="stat-gallery">0</h3>
+                        <p>Gallery Items</p>
+                    </div>
+                    <div class="stat-card">
+                        <h3 id="stat-events">0</h3>
+                        <p>Events</p>
+                    </div>
+                    <div class="stat-card">
+                        <h3 id="stat-team">0</h3>
+                        <p>Team Members</p>
+                    </div>
+                    <div class="stat-card">
+                        <h3 id="stat-users">0</h3>
+                        <p>Total Users</p>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Gallery Section -->
+            <section id="gallery" class="content-section">
+                <div class="section-header">
+                    <h2>Manage Gallery</h2>
+                    <button class="btn-primary" onclick="openAddGalleryModal()">+ Add New Image</button>
+                </div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Title</th>
+                            <th>Category</th>
+                            <th>Image</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="gallery-list">
+                        <tr><td colspan="4" style="text-align: center; padding: 30px;">Loading...</td></tr>
+                    </tbody>
+                </table>
+            </section>
+            
+            <!-- Events Section -->
+            <section id="events" class="content-section">
+                <div class="section-header">
+                    <h2>Manage Events</h2>
+                    <button class="btn-primary" onclick="openAddEventModal()">+ Add New Event</button>
+                </div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Title</th>
+                            <th>Date</th>
+                            <th>Location</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="events-list">
+                        <tr><td colspan="4" style="text-align: center; padding: 30px;">Loading...</td></tr>
+                    </tbody>
+                </table>
+            </section>
+            
+            <!-- Team Section -->
+            <section id="team" class="content-section">
+                <div class="section-header">
+                    <h2>Manage Team</h2>
+                    <button class="btn-primary" onclick="openAddTeamModal()">+ Add Team Member</button>
+                </div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Role</th>
+                            <th>Email</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="team-list">
+                        <tr><td colspan="4" style="text-align: center; padding: 30px;">Loading...</td></tr>
+                    </tbody>
+                </table>
+            </section>
+        </main>
+    </div>
+    
+    <!-- Add/Edit Gallery Modal -->
+    <div id="gallery-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="gallery-modal-title">Add Gallery Item</h2>
+                <button class="close-btn" onclick="closeGalleryModal()">&times;</button>
+            </div>
+            <form id="gallery-form" onsubmit="saveGallery(event)">
+                <div class="form-group">
+                    <label for="gallery-title">Title</label>
+                    <input type="text" id="gallery-title" required>
+                </div>
+                <div class="form-group">
+                    <label for="gallery-image">Image URL</label>
+                    <input type="url" id="gallery-image" required>
+                </div>
+                <div class="form-group">
+                    <label for="gallery-description">Description</label>
+                    <textarea id="gallery-description"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="gallery-category">Category</label>
+                    <input type="text" id="gallery-category">
+                </div>
+                <button type="submit" class="btn-primary" style="width: 100%;">Save Gallery Item</button>
+            </form>
+        </div>
+    </div>
+    
+    <!-- Add/Edit Event Modal -->
+    <div id="event-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="event-modal-title">Add Event</h2>
+                <button class="close-btn" onclick="closeEventModal()">&times;</button>
+            </div>
+            <form id="event-form" onsubmit="saveEvent(event)">
+                <div class="form-group">
+                    <label for="event-title">Title</label>
+                    <input type="text" id="event-title" required>
+                </div>
+                <div class="form-group">
+                    <label for="event-description">Description</label>
+                    <textarea id="event-description" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="event-date">Date</label>
+                    <input type="date" id="event-date" required>
+                </div>
+                <div class="form-group">
+                    <label for="event-time">Time</label>
+                    <input type="time" id="event-time">
+                </div>
+                <div class="form-group">
+                    <label for="event-location">Location</label>
+                    <input type="text" id="event-location">
+                </div>
+                <div class="form-group">
+                    <label for="event-image">Image URL</label>
+                    <input type="url" id="event-image">
+                </div>
+                <button type="submit" class="btn-primary" style="width: 100%;">Save Event</button>
+            </form>
+        </div>
+    </div>
+    
+    <!-- Add/Edit Team Modal -->
+    <div id="team-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="team-modal-title">Add Team Member</h2>
+                <button class="close-btn" onclick="closeTeamModal()">&times;</button>
+            </div>
+            <form id="team-form" onsubmit="saveTeam(event)">
+                <div class="form-group">
+                    <label for="team-name">Name</label>
+                    <input type="text" id="team-name" required>
+                </div>
+                <div class="form-group">
+                    <label for="team-role">Role</label>
+                    <input type="text" id="team-role" required>
+                </div>
+                <div class="form-group">
+                    <label for="team-bio">Bio</label>
+                    <textarea id="team-bio"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="team-image">Image URL</label>
+                    <input type="url" id="team-image">
+                </div>
+                <div class="form-group">
+                    <label for="team-email">Email</label>
+                    <input type="email" id="team-email">
+                </div>
+                <div class="form-group">
+                    <label for="team-phone">Phone</label>
+                    <input type="tel" id="team-phone">
+                </div>
+                <button type="submit" class="btn-primary" style="width: 100%;">Save Team Member</button>
+            </form>
+        </div>
+    </div>
+    
+    <!-- Inject user/session context and set localStorage for admin.js -->
+    <script>
+        (function() {
+            const ctx = {
+                userId: '<%= userId %>' || '',
+                userName: '<%= userName %>' || '',
+                userEmail: '<%= userEmail %>' || '',
+                isAdmin: <%= isAdmin ? 'true' : 'false' %>
+            };
+            window.__ADMIN__ = ctx;
+            try {
+                localStorage.setItem('user_id', ctx.userId);
+                localStorage.setItem('is_admin', ctx.isAdmin ? 'true' : 'false');
+                localStorage.setItem('user', JSON.stringify({ name: ctx.userName, email: ctx.userEmail }));
+            } catch (e) {}
+        })();
+    </script>
+    
+    <script src="/js/admin.js"></script>
+</body>
+</html>

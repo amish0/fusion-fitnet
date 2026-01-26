@@ -34,12 +34,14 @@ app.set('views', path.join(__dirname, 'views'));
 const indexRoutes = require('./routes/index');
 const authRoutes = require('./routes/auth');
 const dashboardRoutes = require('./routes/dashboard');
+const adminRoutes = require('./routes/admin');
 const cartRoutes = require('./routes/cart');
 const contactRoutes = require('./routes/contact');
 
 app.use('/', indexRoutes);
 app.use('/auth', authRoutes);
 app.use('/dashboard', dashboardRoutes);
+app.use('/admin', adminRoutes);
 app.use('/cart', cartRoutes);
 app.use('/contact', contactRoutes);
 

@@ -28,9 +28,15 @@ Backend API server for Fusion FitNet using Python Flask.
 4. **Configure environment:**
    - Copy `.env` and update database credentials
 
-5. **Run server:**
+5. **Initialize database tables:**
    ```bash
    python run.py
+   ```
+   Tables are automatically created on first run via `db.init_tables()`
+
+6. **Seed sample data (optional):**
+   ```bash
+   python seed_database.py
    ```
 
 **Server runs at:** `http://localhost:5000`

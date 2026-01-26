@@ -21,14 +21,18 @@ def create_app():
     # Initialize database connection
     db.connect()
     
+    # Create tables if they don't exist
+    db.init_tables()
+    
     # Register blueprints
-    from app.routes import auth_bp, user_bp, content_bp, cart_bp, contact_bp
+    from app.routes import auth_bp, user_bp, content_bp, cart_bp, contact_bp, admin_bp
     
     app.register_blueprint(auth_bp)
     app.register_blueprint(user_bp)
     app.register_blueprint(content_bp)
     app.register_blueprint(cart_bp)
     app.register_blueprint(contact_bp)
+    app.register_blueprint(admin_bp)
     
     # Global error handlers
     @app.errorhandler(404)

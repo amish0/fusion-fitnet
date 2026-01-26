@@ -32,8 +32,14 @@ router.post('/login', async (req, res) => {
     req.session.userId = response.data.user_id;
     req.session.userName = response.data.name;
     req.session.userEmail = response.data.email;
+    req.session.isAdmin = response.data.is_admin || false;
 
-    res.redirect('/dashboard');
+    // Redirect admin users to admin dashboard
+    if (response.data.is_admin) {
+      res.redirect('/admin/dashboard');
+    } else {
+      res.redirect('/dashboard');
+    }
   } catch (error) {
     const errorMessage = error.response?.data?.message || 'Invalid email or password';
     res.render('auth/login', {
@@ -80,8 +86,14 @@ router.post('/signup', async (req, res) => {
     req.session.userId = response.data.user_id;
     req.session.userName = response.data.name;
     req.session.userEmail = response.data.email;
+    req.session.isAdmin = response.data.is_admin || false;
 
-    res.redirect('/dashboard');
+    // Redirect admin users to admin dashboard
+    if (response.data.is_admin) {
+      res.redirect('/admin/dashboard');
+    } else {
+      res.redirect('/dashboard');
+    }
   } catch (error) {
     const errorMessage = error.response?.data?.message || 'An error occurred during signup';
     res.render('auth/signup', {

@@ -36,4 +36,5 @@ function registerEvent(eventId) {
 // Initialize events
 document.addEventListener('DOMContentLoaded', () => {
   console.log('Events.js loaded');
+  loadEvents();
 });
