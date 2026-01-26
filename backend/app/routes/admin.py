@@ -382,3 +382,32 @@ def get_dashboard_stats():
         }), 200
     except Exception as e:
         return jsonify({'message': f'Error fetching stats: {str(e)}'}), 500
+
+@admin_bp.route('/settings', methods=['GET'])
+@require_admin
+def get_settings():
+    """Get site settings (admin)."""
+    try:
+        rows = db.fetch_all('SELECT key, value FROM site_settings') or []
+        settings = {row['key']: row['value'] for row in rows}
+        return jsonify(settings), 200
+    except Exception as e:
+        return jsonify({'message': f'Error fetching settings: {str(e)}'}), 500
+
+@admin_bp.route('/settings', methods=['PUT'])
+@require_admin
+def update_settings():
+    """Update site settings (hero video, messaging)."""
+    try:
+        data = request.get_json() or {}
+        allowed_keys = ['hero_video_url', 'hero_video_poster', 'hero_headline', 'hero_subheadline', 'cta_text', 'cta_link']
+        for key, value in data.items():
+            if key not in allowed_keys:
+                continue
+            db.execute_query(
+                'INSERT INTO site_settings (key, value) VALUES (%s, %s) ON CONFLICT (key) DO UPDATE SET value = EXCLUDED.value',
+                (key, str(value) if value is not None else '')
+            )
+        return jsonify({'message': 'Settings updated successfully'}), 200
+    except Exception as e:
+        return jsonify({'message': f'Error updating settings: {str(e)}'}), 500

@@ -23,9 +23,8 @@
     <a href="/#features">Features</a>
     <a href="/#gallery">Gallery</a>
     <a href="/#events">Events</a>
-    <a href="/#team">Our Team</a>
     <a href="/#products">Products</a>
-    <a href="/#contact">Contact</a>
+    <a href="/contact">Contact</a>
 
     <% if (isLoggedIn) { %>
       <a href="/cart">🛒 Cart</a>
@@ -38,6 +37,82 @@
   </div>
 </nav>
 
+<section class="hero" id="top">
+  <div class="hero-media">
+    <% if (settings && settings.hero_video_url) { %>
+      <video class="hero-video" src="<%= settings.hero_video_url %>" <%= settings.hero_video_poster ? `poster="${settings.hero_video_poster}"` : '' %> autoplay muted loop playsinline></video>
+    <% } else { %>
+      <div class="hero-fallback"></div>
+    <% } %>
+    <div class="hero-gradient"></div>
+  </div>
+  <div class="hero-content">
+    <p class="hero-kicker">Science-led training • Member-first experience</p>
+    <h1><%= (settings && settings.hero_headline) || 'Train Smart. Move Strong. Recover Faster.' %></h1>
+    <p class="hero-sub"><%= (settings && settings.hero_subheadline) || 'Blending coaching, community, and data to deliver results you can measure.' %></p>
+    <div class="hero-actions">
+      <a class="btn btn-primary" href="/products">Shop Featured Gear</a>
+      <a class="btn btn-ghost" href="/contact">Book a Consultation</a>
+    </div>
+    <div class="hero-metrics">
+      <div>
+        <strong>5k+</strong>
+        <span>Training Sessions</span>
+      </div>
+      <div>
+        <strong>98%</strong>
+        <span>Member Satisfaction</span>
+      </div>
+      <div>
+        <strong>24/7</strong>
+        <span>Access & Support</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="about" class="about">
+  <div class="about-content">
+    <div>
+      <p class="eyebrow">About Fusion FitNet</p>
+      <h2>Human coaches, scientific programming, measurable progress.</h2>
+      <p class="lead">We combine expert coaching, sports science, and community accountability. Every session, plan, and product is curated to keep you moving better—on and off the floor.</p>
+      <div class="about-list">
+        <div class="about-item">
+          <i class="fas fa-dna"></i>
+          <div>
+            <h4>Science-backed methods</h4>
+            <p>Periodized programming, recovery protocols, and movement screens.</p>
+          </div>
+        </div>
+        <div class="about-item">
+          <i class="fas fa-heartbeat"></i>
+          <div>
+            <h4>Holistic health</h4>
+            <p>Strength, conditioning, mobility, and nutrition guidance in one place.</p>
+          </div>
+        </div>
+        <div class="about-item">
+          <i class="fas fa-chart-line"></i>
+          <div>
+            <h4>Data you can see</h4>
+            <p>Track progress with coach feedback and session analytics.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="about-card">
+      <div class="about-badge">Member Spotlight</div>
+      <h3>“I hit PRs without burning out.”</h3>
+      <p>“The coaching cues and recovery work made the difference. I finally train smarter.”</p>
+      <div class="about-meta">
+        <span>Kayla M.</span>
+        <span>Strength & Conditioning</span>
+      </div>
+    </div>
+  </div>
+</section>
+
 <section id="features">
   <h2>Why Choose Fusion FitNet?</h2>
   <div class="features">
@@ -45,19 +120,19 @@
       <i class="fas fa-dumbbell"></i>
       <h3>Personalized Training</h3>
       <p>Custom workouts and plans designed to match your fitness level and goals.</p>
-      <a href="#contact" class="btn">Join Now</a>
+      <a href="/contact" class="btn">Join Now</a>
     </div>
     <div class="feature-card">
       <i class="fas fa-trophy"></i>
       <h3>Expert Coaches</h3>
       <p>Learn from certified trainers with years of experience in strength and wellness.</p>
-      <a href="#contact" class="btn">Meet Our Coaches</a>
+      <a href="/contact" class="btn">Meet Our Coaches</a>
     </div>
     <div class="feature-card">
       <i class="fas fa-users"></i>
       <h3>Community Support</h3>
       <p>Connect with thousands of members on their fitness journey and reach goals together.</p>
-      <a href="#contact" class="btn">Join Community</a>
+      <a href="/contact" class="btn">Join Community</a>
     </div>
   </div>
 </section>
@@ -93,35 +168,6 @@
       <% }); %>
     <% } else { %>
       <p>No upcoming events at the moment.</p>
-    <% } %>
-  </div>
-</section>
-
-<section id="team">
-  <h2>Our Expert Team</h2>
-  <div class="team-container">
-    <% if (team && team.length > 0) { %>
-      <% team.forEach(member => { %>
-        <div class="team-member">
-          <img src="<%= member.image_url %>" alt="<%= member.name %>">
-          <h3><%= member.name %></h3>
-          <p class="role"><%= member.role %></p>
-          <p><%= member.bio %></p>
-          <div class="social-links">
-            <% if (member.social) { %>
-              <% if (member.social.facebook) { %>
-                <a href="<%= member.social.facebook %>" target="_blank"><i class="fab fa-facebook"></i></a>
-              <% } %>
-              <% if (member.social.instagram) { %>
-                <a href="<%= member.social.instagram %>" target="_blank"><i class="fab fa-instagram"></i></a>
-              <% } %>
-              <% if (member.social.twitter) { %>
-                <a href="<%= member.social.twitter %>" target="_blank"><i class="fab fa-twitter"></i></a>
-              <% } %>
-            <% } %>
-          </div>
-        </div>
-      <% }); %>
     <% } %>
   </div>
 </section>
@@ -181,27 +227,39 @@
   </div>
 </section>
 
-<section id="contact">
-  <h2>Get In Touch</h2>
-  <form id="contactForm" onsubmit="submitContact(event)">
-    <div class="form-group">
-      <input type="text" name="name" placeholder="Your Name" required>
+<section class="cta-band">
+  <div class="cta-content">
+    <div>
+      <p class="eyebrow">Ready to get started?</p>
+      <h2>Book a consult and get a personalized plan.</h2>
+      <p class="lead">Tell us your goals. We'll map training, recovery, and gear for your next milestone.</p>
     </div>
-    <div class="form-group">
-      <input type="email" name="email" placeholder="Your Email" required>
+    <div class="cta-actions">
+      <a class="btn btn-primary" href="/contact">Talk to a Coach</a>
+      <a class="btn btn-ghost" href="/products">Browse Gear</a>
     </div>
-    <div class="form-group">
-      <input type="text" name="subject" placeholder="Subject" required>
-    </div>
-    <div class="form-group">
-      <textarea name="message" placeholder="Your Message" rows="5" required></textarea>
-    </div>
-    <button type="submit" class="btn btn-primary">Send Message</button>
-  </form>
+  </div>
 </section>
 
-<footer>
-  <p>&copy; 2024 Fusion FitNet. All rights reserved. | Visitors: <%= visitors %></p>
+<footer class="footer">
+  <div class="footer-left">
+    <h3>Fusion FitNet</h3>
+    <p>Fitness • Strength • Transformation</p>
+  </div>
+  <div class="footer-contact">
+    <h4>Contact</h4>
+    <p>123 Fitness Street, Gym City</p>
+    <p>+1 (555) 123-4567</p>
+    <p><a href="mailto:info@fusionfitnet.com">info@fusionfitnet.com</a></p>
+    <a href="/contact" class="footer-link">Contact Page</a>
+  </div>
+  <div class="footer-links">
+    <h4>Explore</h4>
+    <a href="/#about">About</a>
+    <a href="/#products">Featured Products</a>
+    <a href="/#events">Events</a>
+    <a href="/#gallery">Gallery</a>
+  </div>
 </footer>
 
 <script src="/js/main.js"></script>

@@ -12,6 +12,7 @@ router.get('/', async (req, res) => {
     const teamRes = await axios.get(`${FLASK_API}/api/team`);
     const blogRes = await axios.get(`${FLASK_API}/api/blog`);
     const productsRes = await axios.get(`${FLASK_API}/api/products/featured`);
+    const settingsRes = await axios.get(`${FLASK_API}/api/settings`);
 
     res.render('index', {
       title: 'Fusion FitNet',
@@ -22,7 +23,8 @@ router.get('/', async (req, res) => {
       events: eventsRes.data,
       team: teamRes.data,
       blog: blogRes.data,
-      products: productsRes.data
+      products: productsRes.data,
+      settings: settingsRes.data || {}
     });
   } catch (error) {
     console.error('Error fetching data:', error.message);
@@ -35,7 +37,8 @@ router.get('/', async (req, res) => {
       events: [],
       team: [],
       blog: [],
-      products: []
+      products: [],
+      settings: {}
     });
   }
 });

@@ -187,6 +187,18 @@ def get_featured_products():
         print(f"Error fetching featured products: {e}")
         return jsonify({'message': f'Error fetching featured products: {str(e)}'}), 500
 
+
+@content_bp.route('/settings', methods=['GET'])
+def get_public_settings():
+    """Public site settings (hero video, etc.)."""
+    try:
+        rows = db.fetch_all('SELECT key, value FROM site_settings') or []
+        settings = {row['key']: row['value'] for row in rows}
+        return jsonify(settings), 200
+    except Exception as e:
+        print(f"Error fetching settings: {e}")
+        return jsonify({'message': f'Error fetching settings: {str(e)}'}), 500
+
 @content_bp.route('/products/<int:id>', methods=['GET'])
 def get_product(id):
     """Get single product with all images from database."""

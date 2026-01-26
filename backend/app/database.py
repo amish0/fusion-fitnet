@@ -196,6 +196,12 @@ class Database:
                 visit_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
                 ip_address VARCHAR(50),
                 user_agent TEXT
+            )""",
+            
+            # Site settings table (key/value for hero video, etc.)
+            """CREATE TABLE IF NOT EXISTS site_settings (
+                key VARCHAR(100) PRIMARY KEY,
+                value TEXT
             )"""
         ]
         

@@ -22,98 +22,90 @@
     <a href="/#features">Features</a>
     <a href="/#gallery">Gallery</a>
     <a href="/#events">Events</a>
-    <a href="/#team">Our Team</a>
-    <a href="/#contact">Contact</a>
+    <a href="/#products">Products</a>
+    <a href="/contact">Contact</a>
   </div>
 </nav>
 
 <section id="contact">
   <div class="contact-container">
-    <h1>Get In Touch With Us</h1>
-    <p class="contact-subtitle">Have questions? We'd love to hear from you!</p>
-
-    <div class="contact-content">
-      <div class="contact-info">
-        <div class="info-box">
-          <i class="fas fa-map-marker-alt"></i>
-          <h3>Address</h3>
-          <p>123 Fitness Street<br>Gym City, ST 12345</p>
-        </div>
-
-        <div class="info-box">
-          <i class="fas fa-phone"></i>
-          <h3>Phone</h3>
-          <p>+1 (555) 123-4567</p>
-        </div>
-
-        <div class="info-box">
-          <i class="fas fa-envelope"></i>
-          <h3>Email</h3>
-          <p>info@fusionfitnet.com</p>
-        </div>
-
-        <div class="info-box">
-          <i class="fas fa-clock"></i>
-          <h3>Hours</h3>
-          <p>Mon - Fri: 6am - 10pm<br>Sat - Sun: 8am - 8pm</p>
+    <div class="contact-hero">
+      <div>
+        <p class="eyebrow">Visit & Connect</p>
+        <h1>Come see the space. Talk with a coach. Train smarter.</h1>
+        <p class="contact-subtitle">We’re here to answer questions, plan your first session, and show you how we blend science and community.</p>
+        <div class="contact-grid">
+          <div class="info-card">
+            <i class="fas fa-map-marker-alt"></i>
+            <div>
+              <h3>Address</h3>
+              <p>123 Fitness Street<br>Gym City, ST 12345</p>
+            </div>
+          </div>
+          <div class="info-card">
+            <i class="fas fa-phone"></i>
+            <div>
+              <h3>Phone</h3>
+              <p>+1 (555) 123-4567</p>
+            </div>
+          </div>
+          <div class="info-card">
+            <i class="fas fa-envelope"></i>
+            <div>
+              <h3>Email</h3>
+              <p>info@fusionfitnet.com</p>
+            </div>
+          </div>
+          <div class="info-card">
+            <i class="fas fa-clock"></i>
+            <div>
+              <h3>Hours</h3>
+              <p>Mon - Fri: 6am - 10pm<br>Sat - Sun: 8am - 8pm</p>
+            </div>
+          </div>
         </div>
       </div>
-
-      <form id="contactForm" class="contact-form" onsubmit="submitContact(event)">
-        <div class="form-group">
-          <input type="text" name="name" placeholder="Your Name" required>
-          <label>Full Name</label>
+      <div class="contact-map-panel">
+        <div class="map-frame">
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3153.020715536328!2d-122.41941568468198!3d37.77492977975871!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8085808c5d65a9bf%3A0x8c42eb38b0f81c52!2sFitness%20Center!5e0!3m2!1sen!2sus!4v1615153554232!5m2!1sen!2sus"
+            width="100%"
+            height="100%"
+            style="border:0; border-radius: 16px;"
+            allowfullscreen=""
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"></iframe>
         </div>
-
-        <div class="form-group">
-          <input type="email" name="email" placeholder="Your Email" required>
-          <label>Email Address</label>
+        <div class="contact-cta">
+          <h3>Book a visit</h3>
+          <p>Drop by for a tour and a 15-minute coach consult.</p>
+          <a class="btn btn-primary" href="tel:+15551234567">Call Now</a>
         </div>
-
-        <div class="form-group">
-          <input type="text" name="subject" placeholder="Subject" required>
-          <label>Subject</label>
-        </div>
-
-        <div class="form-group">
-          <textarea name="message" placeholder="Your Message" rows="6" required></textarea>
-          <label>Message</label>
-        </div>
-
-        <button type="submit" class="btn btn-primary btn-lg">Send Message</button>
-      </form>
+      </div>
     </div>
   </div>
 </section>
 
-<footer>
-  <p>&copy; 2024 Fusion FitNet. All rights reserved.</p>
+<footer class="footer">
+  <div class="footer-left">
+    <h3>Fusion FitNet</h3>
+    <p>Fitness • Strength • Transformation</p>
+  </div>
+  <div class="footer-contact">
+    <h4>Contact</h4>
+    <p>123 Fitness Street, Gym City</p>
+    <p>+1 (555) 123-4567</p>
+    <p><a href="mailto:info@fusionfitnet.com">info@fusionfitnet.com</a></p>
+    <a href="/contact" class="footer-link">Contact Page</a>
+  </div>
+  <div class="footer-links">
+    <h4>Explore</h4>
+    <a href="/#about">About</a>
+    <a href="/#products">Featured Products</a>
+    <a href="/#events">Events</a>
+    <a href="/#gallery">Gallery</a>
+  </div>
 </footer>
-
-<script>
-function submitContact(e) {
-  e.preventDefault();
-  const formData = new FormData(document.getElementById('contactForm'));
-  const data = {
-    name: formData.get('name'),
-    email: formData.get('email'),
-    subject: formData.get('subject'),
-    message: formData.get('message')
-  };
-
-  fetch('/contact/submit', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(data)
-  })
-  .then(r => r.json())
-  .then(res => {
-    alert(res.message);
-    if (res.success) document.getElementById('contactForm').reset();
-  })
-  .catch(err => alert('Error: ' + err));
-}
-</script>
 
 </body>
 </html>
