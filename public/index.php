@@ -58,7 +58,7 @@ file_put_contents($visitor_count_file, $visitor_count);
     <a href="#events">Events</a>
     <a href="#team">Our Team</a>
     <a href="#products">Products</a>
-    <a href="#contact">Contact</a>
+    <a href="contact-page.php">Contact</a>
 
     <?php if (!empty($_SESSION["user_id"])): ?>
       <a href="cart.php">🛒 Cart</a>
@@ -252,7 +252,7 @@ file_put_contents($visitor_count_file, $visitor_count);
 <section class="mobile-cta">
   <h2>Start Your Fitness Journey Today</h2>
   <p>Join Fusion FitNet & transform your body</p>
-  <a href="#contact">Join Now</a>
+  <a href="contact-page.php">Get in Touch</a>
 </section>
 
 <!-- <footer>
@@ -270,9 +270,54 @@ file_put_contents($visitor_count_file, $visitor_count);
 
 
 <footer>
-  © 2025 Fusion FitNet | <span class="visitor-counter">Visitors: <?php echo $visitor_count; ?></span>
+  <div class="footer-content">
+    <div class="footer-section">
+      <h3>Fusion FitNet</h3>
+      <p>Your partner in fitness transformation. Building stronger, healthier lives through expert coaching and premium nutrition.</p>
+      <div class="social-links">
+        <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+      </div>
+    </div>
+    
+    <div class="footer-section">
+      <h4>Quick Links</h4>
+      <ul>
+        <li><a href="index.php">Home</a></li>
+        <li><a href="#features">Features</a></li>
+        <li><a href="#gallery">Gallery</a></li>
+        <li><a href="#events">Events</a></li>
+      </ul>
+    </div>
+    
+    <div class="footer-section">
+      <h4>Our Team</h4>
+      <ul>
+        <li><a href="#team">Meet Our Team</a></li>
+        <li><a href="#products">Products</a></li>
+        <li><a href="cart.php">Shopping Cart</a></li>
+        <li><a href="dashboard.php">My Account</a></li>
+      </ul>
+    </div>
+    
+    <div class="footer-section">
+      <h4>Contact Us</h4>
+      <ul>
+        <li><a href="contact-page.php">Get in Touch</a></li>
+        <li><a href="mailto:ayanain@fusionfitnet.com"><i class="fas fa-envelope"></i> ayanain@fusionfitnet.com</a></li>
+        <li><a href="tel:+919147425114"><i class="fas fa-phone"></i> +91 91474 25114</a></li>
+        <li><i class="fas fa-map-marker-alt"></i> India</li>
+      </ul>
+    </div>
+  </div>
+  
+  <div class="footer-bottom">
+    <p>&copy; <?php echo date('Y'); ?> Fusion FitNet. All rights reserved.</p>
+    <p class="visitor-counter">Total Visitors: <?php echo number_format($visitor_count); ?></p>
+  </div>
 </footer>
-
 
 </body>
 </html>

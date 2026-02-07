@@ -223,7 +223,52 @@ $email = $_SESSION["email"];
     </div>
 
     <footer>
-        © 2025 Fusion FitNet
+      <div class="footer-content">
+        <div class="footer-section">
+          <h3>Fusion FitNet</h3>
+          <p>Your partner in fitness transformation. Building stronger, healthier lives through expert coaching and premium nutrition.</p>
+          <div class="social-links">
+            <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+            <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+            <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+          </div>
+        </div>
+        
+        <div class="footer-section">
+          <h4>Quick Links</h4>
+          <ul>
+            <li><a href="index.php">Home</a></li>
+            <li><a href="index.php#features">Features</a></li>
+            <li><a href="index.php#gallery">Gallery</a></li>
+            <li><a href="index.php#events">Events</a></li>
+          </ul>
+        </div>
+        
+        <div class="footer-section">
+          <h4>Our Team</h4>
+          <ul>
+            <li><a href="index.php#team">Meet Our Team</a></li>
+            <li><a href="index.php#products">Products</a></li>
+            <li><a href="cart.php">Shopping Cart</a></li>
+            <li><a href="dashboard.php">My Account</a></li>
+          </ul>
+        </div>
+        
+        <div class="footer-section">
+          <h4>Contact Us</h4>
+          <ul>
+            <li><a href="contact-page.php">Get in Touch</a></li>
+            <li><a href="mailto:ayanain@fusionfitnet.com"><i class="fas fa-envelope"></i> ayanain@fusionfitnet.com</a></li>
+            <li><a href="tel:+919147425114"><i class="fas fa-phone"></i> +91 91474 25114</a></li>
+            <li><i class="fas fa-map-marker-alt"></i> India</li>
+          </ul>
+        </div>
+      </div>
+      
+      <div class="footer-bottom">
+        <p>&copy; <?php echo date('Y'); ?> Fusion FitNet. All rights reserved.</p>
+      </div>
     </footer>
 
     <script src="js/main.js"></script>
