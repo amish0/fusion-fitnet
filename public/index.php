@@ -315,7 +315,6 @@ file_put_contents($visitor_count_file, $visitor_count);
   
   <div class="footer-bottom">
     <p>&copy; <?php echo date('Y'); ?> Fusion FitNet. All rights reserved.</p>
-    <p class="visitor-counter">Total Visitors: <?php echo number_format($visitor_count); ?></p>
   </div>
 </footer>
 

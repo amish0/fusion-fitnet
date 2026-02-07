@@ -199,9 +199,6 @@ if (!$member) {
   
   <div class="footer-bottom">
     <p>&copy; <?php echo date('Y'); ?> Fusion FitNet. All rights reserved.</p>
-    <?php if (isset($visitor_count)): ?>
-      <p class="visitor-counter">Total Visitors: <?php echo number_format($visitor_count); ?></p>
-    <?php endif; ?>
   </div>
 </footer>
 
