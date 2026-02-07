@@ -534,17 +534,17 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
           <div class="form-row">
             <div class="form-field">
               <label for="name">Your Name *</label>
-              <input type="text" id="name" name="name" required placeholder="John Doe">
+              <input type="text" id="name" name="name" required placeholder="your name">
             </div>
             <div class="form-field">
               <label for="email">Email Address *</label>
-              <input type="email" id="email" name="email" required placeholder="john@example.com">
+              <input type="email" id="email" name="email" required placeholder="xx@xxxx.com">
             </div>
           </div>
 
           <div class="form-field">
             <label for="phone">Phone Number (Optional)</label>
-            <input type="tel" id="phone" name="phone" placeholder="+91 98765 43210">
+            <input type="tel" id="phone" name="phone" placeholder="+91 xxxxxxxxxx">
           </div>
 
           <div class="form-field">
