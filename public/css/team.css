@@ -150,102 +150,327 @@
 }
 
 /* ============================================
-   PROFESSIONAL TEAM MEMBER DETAIL PAGE STYLES
+   PROFESSIONAL TEAM PROFILE PAGE - THREE SECTIONS
    ============================================ */
 
-/* Hero Section */
-.team-member-detail {
-    background: #f8f9fa;
+.team-profile-page {
+    background: #f5f7fa;
     min-height: 100vh;
+    padding: 40px 20px;
 }
 
-.profile-hero {
-    position: relative;
-    background: linear-gradient(135deg, #1e3c72 0%, #2a5298 50%, #7e22ce 100%);
-    padding: 80px 0 120px;
-    overflow: hidden;
-}
-
-.hero-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: 
-        radial-gradient(circle at 20% 50%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
-        radial-gradient(circle at 80% 80%, rgba(255, 255, 255, 0.1) 0%, transparent 50%);
-    pointer-events: none;
-}
-
-.hero-content {
+.profile-container {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 0 30px;
-    position: relative;
-    z-index: 1;
 }
 
-.back-button-container {
-    margin-bottom: 40px;
-    animation: slideInLeft 0.6s ease-out;
+/* Back Navigation */
+.back-nav {
+    margin-bottom: 30px;
 }
 
-@keyframes slideInLeft {
-    from {
-        opacity: 0;
-        transform: translateX(-30px);
-    }
-    to {
-        opacity: 1;
-        transform: translateX(0);
-    }
-}
-
-.back-button {
+.back-link {
     display: inline-flex;
     align-items: center;
     gap: 10px;
-    background: rgba(255, 255, 255, 0.15);
-    backdrop-filter: blur(10px);
-    color: #fff;
+    background: #fff;
+    color: #333;
     padding: 12px 24px;
-    border-radius: 30px;
+    border-radius: 8px;
     text-decoration: none;
     font-weight: 600;
-    font-family: 'Inter', sans-serif;
+    font-size: 0.95em;
     transition: all 0.3s ease;
-    border: 2px solid rgba(255, 255, 255, 0.3);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    border: 1px solid #e0e0e0;
 }
 
-.back-button:hover {
-    background: rgba(255, 255, 255, 0.25);
-    border-color: rgba(255, 255, 255, 0.5);
+.back-link:hover {
+    background: #007bff;
+    color: #fff;
+    border-color: #007bff;
     transform: translateX(-5px);
+    box-shadow: 0 4px 12px rgba(0, 123, 255, 0.2);
 }
 
-/* Profile Header */
-.profile-header {
+.back-link i {
+    font-size: 0.9em;
+}
+
+/* Profile Card */
+.profile-card {
+    background: #fff;
+    border-radius: 16px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    overflow: hidden;
+    display: flex;
+    gap: 0;
+}
+
+/* Profile Image Section - Left Aligned */
+.profile-image-section {
+    flex-shrink: 0;
+    width: 350px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     display: flex;
     align-items: center;
-    gap: 50px;
-    animation: fadeInUp 0.8s ease-out 0.2s both;
+    justify-content: center;
+    padding: 50px 30px;
 }
 
-@keyframes fadeInUp {
-    from {
-        opacity: 0;
-        transform: translateY(30px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+.member-photo {
+    width: 280px;
+    height: 280px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 8px solid #fff;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
 }
 
-.profile-image-wrapper {
+/* Profile Content Section - Right Aligned */
+.profile-content-section {
+    flex: 1;
+    padding: 50px;
+}
+
+/* Section 1: Basic Details */
+.basic-details-section {
+    border-bottom: 2px solid #f0f0f0;
+    padding-bottom: 35px;
+    margin-bottom: 35px;
+}
+
+.member-name {
+    font-size: 2.5em;
+    font-weight: 700;
+    color: #1a1a1a;
+    margin: 0 0 12px 0;
+    line-height: 1.2;
+}
+
+.member-designation {
+    font-size: 1.3em;
+    color: #667eea;
+    font-weight: 600;
+    margin: 0 0 25px 0;
+}
+
+.contact-info {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.info-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 1em;
+    color: #555;
+}
+
+.info-item i {
+    width: 24px;
+    color: #667eea;
+    font-size: 1.1em;
+}
+
+.info-item a {
+    color: #007bff;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.info-item a:hover {
+    color: #0056b3;
+    text-decoration: underline;
+}
+
+/* Section 2: Introduction */
+.introduction-section {
+    border-bottom: 2px solid #f0f0f0;
+    padding-bottom: 35px;
+    margin-bottom: 35px;
+}
+
+.section-title {
+    font-size: 1.6em;
+    font-weight: 700;
+    color: #1a1a1a;
+    margin: 0 0 20px 0;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.section-title::before {
+    content: '';
+    width: 4px;
+    height: 28px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border-radius: 2px;
+}
+
+.section-content {
+    color: #444;
+    line-height: 1.8;
+}
+
+.section-content p {
+    font-size: 1.05em;
+    margin: 0;
+    text-align: justify;
+}
+
+/* Section 3: Experience */
+.experience-section {
+    margin-bottom: 0;
+}
+
+.experience-list {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 30px 0;
+}
+
+.experience-list li {
     position: relative;
-    flex-shrink: 0;
+    padding: 12px 0 12px 30px;
+    font-size: 1.05em;
+    color: #444;
+    line-height: 1.7;
+}
+
+.experience-list li::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    top: 12px;
+    color: #667eea;
+    font-weight: 900;
+    font-size: 1.2em;
+}
+
+/* Expertise Tags */
+.expertise-tags {
+    margin-top: 30px;
+    padding-top: 30px;
+    border-top: 1px solid #f0f0f0;
+}
+
+.expertise-tags h3 {
+    font-size: 1.2em;
+    font-weight: 600;
+    color: #1a1a1a;
+    margin: 0 0 15px 0;
+}
+
+.tags-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.skill-tag {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: #fff;
+    padding: 8px 18px;
+    border-radius: 20px;
+    font-size: 0.9em;
+    font-weight: 600;
+    display: inline-block;
+    transition: all 0.3s ease;
+    box-shadow: 0 3px 10px rgba(102, 126, 234, 0.3);
+}
+
+.skill-tag:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+    .profile-card {
+        flex-direction: column;
+    }
+    
+    .profile-image-section {
+        width: 100%;
+        padding: 40px 30px;
+    }
+    
+    .member-photo {
+        width: 220px;
+        height: 220px;
+    }
+    
+    .profile-content-section {
+        padding: 40px 30px;
+    }
+}
+
+@media (max-width: 768px) {
+    .team-profile-page {
+        padding: 20px 10px;
+    }
+    
+    .profile-image-section {
+        padding: 30px 20px;
+    }
+    
+    .member-photo {
+        width: 180px;
+        height: 180px;
+        border: 6px solid #fff;
+    }
+    
+    .profile-content-section {
+        padding: 30px 20px;
+    }
+    
+    .member-name {
+        font-size: 2em;
+    }
+    
+    .member-designation {
+        font-size: 1.1em;
+    }
+    
+    .section-title {
+        font-size: 1.4em;
+    }
+    
+    .section-content p {
+        font-size: 1em;
+        text-align: left;
+    }
+    
+    .experience-list li {
+        font-size: 1em;
+    }
+}
+
+@media (max-width: 480px) {
+    .member-name {
+        font-size: 1.6em;
+    }
+    
+    .member-designation {
+        font-size: 1em;
+    }
+    
+    .contact-info {
+        font-size: 0.9em;
+    }
+    
+    .tags-container {
+        gap: 8px;
+    }
+    
+    .skill-tag {
+        font-size: 0.85em;
+        padding: 6px 14px;
+    }
 }
 
 .profile-image-border {
