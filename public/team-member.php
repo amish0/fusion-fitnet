@@ -39,8 +39,8 @@ if (!$member) {
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <!-- CSS -->
-  <link rel="stylesheet" href="css/style.css">
-  <link rel="stylesheet" href="css/team.css">
+  <link rel="stylesheet" href="css/style.css?v=<?php echo time(); ?>">
+  <link rel="stylesheet" href="css/team.css?v=<?php echo time(); ?>">
 
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -158,7 +158,7 @@ if (!$member) {
   <p>Visitor count: <?php echo isset($visitor_count) ? $visitor_count : '0'; ?></p>
 </footer>
 
-<script src="js/main.js"></script>
+<script src="js/main.js?v=<?php echo time(); ?>"></script>
 
 </body>
 </html>

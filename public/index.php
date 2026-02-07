@@ -20,8 +20,8 @@ file_put_contents($visitor_count_file, $visitor_count);
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <!-- CSS -->
-  <link rel="stylesheet" href="css/style.css">
-  <link rel="stylesheet" href="css/team.css">
+  <link rel="stylesheet" href="css/style.css?v=<?php echo time(); ?>">
+  <link rel="stylesheet" href="css/team.css?v=<?php echo time(); ?>">
 
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -265,8 +265,8 @@ file_put_contents($visitor_count_file, $visitor_count);
 <!-- Dark Mode -->
 <div class="toggle" onclick="toggleDarkMode()">🌙</div>
 
-<script src="js/main.js"></script>
-<script src="js/team.js"></script>
+<script src="js/main.js?v=<?php echo time(); ?>"></script>
+<script src="js/team.js?v=<?php echo time(); ?>"></script>
 
 
 <footer>
