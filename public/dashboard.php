@@ -167,6 +167,58 @@ $email = $_SESSION["email"];
             .dashboard-grid {
                 grid-template-columns: 1fr;
             }
+            
+            .dashboard-card {
+                padding: 30px 25px;
+            }
+            
+            .dashboard-card h3 {
+                font-size: 1.4em;
+            }
+            
+            .dashboard-card i {
+                font-size: 2.5rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .dashboard-hero {
+                padding: 30px 20px;
+            }
+            
+            .dashboard-hero h1 {
+                font-size: 1.7em;
+            }
+            
+            .dashboard-hero p {
+                font-size: 1em;
+            }
+            
+            .dashboard-grid {
+                gap: 20px;
+            }
+            
+            .dashboard-card {
+                padding: 25px 20px;
+            }
+            
+            .dashboard-card i {
+                font-size: 2.2rem;
+            }
+            
+            .dashboard-card h3 {
+                font-size: 1.3em;
+            }
+            
+            .dashboard-card p {
+                font-size: 0.95em;
+            }
+            
+            .quick-action {
+                padding: 12px 25px;
+                font-size: 0.95em;
+                min-height: 48px;
+            }
         }
     </style>
 </head>

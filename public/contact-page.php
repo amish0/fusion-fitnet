@@ -427,6 +427,89 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
       .contact-content {
         margin: -40px auto 60px;
       }
+      
+      .contact-info-sidebar,
+      .contact-form-container {
+        padding: 35px 25px;
+      }
+      
+      .info-card i {
+        font-size: 2em;
+      }
+    }
+    
+    @media (max-width: 480px) {
+      .contact-hero {
+        padding: 50px 15px 40px;
+      }
+      
+      .contact-hero h1 {
+        font-size: 1.7em;
+      }
+      
+      .contact-hero p {
+        font-size: 1em;
+      }
+      
+      .contact-content {
+        margin: -30px 10px 50px;
+      }
+      
+      .contact-info-sidebar,
+      .contact-form-container {
+        padding: 30px 20px;
+      }
+      
+      .sidebar-title {
+        font-size: 1.3em;
+      }
+      
+      .info-card {
+        padding: 18px;
+      }
+      
+      .info-card i {
+        font-size: 1.8em;
+        min-width: 45px;
+      }
+      
+      .info-card h4 {
+        font-size: 1em;
+        margin-bottom: 4px;
+      }
+      
+      .info-card p,
+      .info-card a {
+        font-size: 0.9em;
+      }
+      
+      .form-title {
+        font-size: 1.5em;
+      }
+      
+      .form-group label {
+        font-size: 0.95em;
+      }
+      
+      .form-group input,
+      .form-group textarea {
+        padding: 12px 15px;
+        font-size: 0.95em;
+      }
+      
+      .submit-btn {
+        padding: 14px 30px;
+        font-size: 0.95em;
+        min-height: 48px;
+      }
+      
+      .map-container {
+        padding: 30px 20px;
+      }
+      
+      .map-placeholder i {
+        font-size: 3em;
+      }
     }
   </style>
 </head>
