@@ -45,7 +45,7 @@ if (!$member) {
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Inter:wght@300;400;500;600;700&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
 
   <!-- Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
@@ -76,83 +76,191 @@ if (!$member) {
 
 <!-- Team Member Detail Section -->
 <section class="team-member-detail">
-    <div class="back-button-container">
-        <a href="index.php#team" class="back-button">
-            <i class="fas fa-arrow-left"></i> Back to Team
-        </a>
+    <div class="profile-hero">
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <div class="back-button-container">
+                <a href="index.php#team" class="back-button">
+                    <i class="fas fa-arrow-left"></i> Back to Team
+                </a>
+            </div>
+            
+            <div class="profile-header">
+                <div class="profile-image-wrapper">
+                    <div class="profile-image-border">
+                        <img src="<?php echo htmlspecialchars($member['image']); ?>" alt="<?php echo htmlspecialchars($member['name']); ?>" class="profile-image">
+                    </div>
+                    <div class="image-decoration"></div>
+                </div>
+                
+                <div class="profile-info">
+                    <div class="profile-badge">
+                        <i class="fas fa-certificate"></i> Senior Leadership
+                    </div>
+                    <h1 class="profile-name"><?php echo htmlspecialchars($member['name']); ?></h1>
+                    <p class="profile-role"><?php echo htmlspecialchars($member['role']); ?></p>
+                    <div class="profile-company">
+                        <i class="fas fa-building"></i>
+                        <span>FusionFitNet</span>
+                        <span class="separator">|</span>
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>Asia Pacific Region</span>
+                    </div>
+                    
+                    <div class="profile-stats">
+                        <div class="stat-item">
+                            <div class="stat-number"><?php 
+                                // Extract years of experience from bio
+                                preg_match('/(\d+) years/', $member['bio'], $matches);
+                                echo isset($matches[1]) ? $matches[1] . '+' : '10+';
+                            ?></div>
+                            <div class="stat-label">Years Experience</div>
+                        </div>
+                        <div class="stat-divider"></div>
+                        <div class="stat-item">
+                            <div class="stat-number"><?php echo isset($member['expertise']) ? count($member['expertise']) : '6'; ?>+</div>
+                            <div class="stat-label">Expertise Areas</div>
+                        </div>
+                        <div class="stat-divider"></div>
+                        <div class="stat-item">
+                            <div class="stat-number"><?php echo isset($member['experience']) ? count($member['experience']) : '5'; ?>+</div>
+                            <div class="stat-label">Key Companies</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
-    <div class="member-detail-card">
-        <div class="member-detail-header">
-            <div class="member-detail-image">
-                <img src="<?php echo htmlspecialchars($member['image']); ?>" alt="<?php echo htmlspecialchars($member['name']); ?>">
+    <div class="profile-content-wrapper">
+        <!-- Quick Info Cards -->
+        <div class="quick-info-section">
+            <div class="info-card">
+                <div class="info-icon">
+                    <i class="fas fa-trophy"></i>
+                </div>
+                <div class="info-content">
+                    <h4>Industry Leader</h4>
+                    <p>Driving excellence in nutraceutical sector</p>
+                </div>
             </div>
-            <div class="member-detail-info">
-                <h1><?php echo htmlspecialchars($member['name']); ?></h1>
-                <p class="member-detail-role"><?php echo htmlspecialchars($member['role']); ?></p>
-                <div class="member-detail-company">
-                    <i class="fas fa-building"></i> FusionFitNet
+            <div class="info-card">
+                <div class="info-icon">
+                    <i class="fas fa-users"></i>
+                </div>
+                <div class="info-content">
+                    <h4>Team Builder</h4>
+                    <p>Expert in training & development</p>
+                </div>
+            </div>
+            <div class="info-card">
+                <div class="info-icon">
+                    <i class="fas fa-chart-line"></i>
+                </div>
+                <div class="info-content">
+                    <h4>Growth Strategist</h4>
+                    <p>Proven track record in market expansion</p>
                 </div>
             </div>
         </div>
 
-        <div class="member-detail-body">
-            <h2><i class="fas fa-user-tie"></i> Professional Biography</h2>
-            <div class="bio-content">
-                <?php 
-                // Split bio into paragraphs for better readability
-                $bioParagraphs = explode('. ', $member['bio']);
-                $currentParagraph = '';
-                $sentenceCount = 0;
-                
-                foreach ($bioParagraphs as $sentence) {
-                    if (!empty(trim($sentence))) {
-                        $currentParagraph .= trim($sentence) . '. ';
-                        $sentenceCount++;
-                        
-                        // Create a new paragraph every 3-4 sentences
-                        if ($sentenceCount >= 3) {
-                            echo '<p>' . htmlspecialchars($currentParagraph) . '</p>';
-                            $currentParagraph = '';
-                            $sentenceCount = 0;
+        <div class="profile-main-content">
+            <!-- About Section -->
+            <div class="content-section about-section">
+                <div class="section-header">
+                    <div class="header-line"></div>
+                    <h2><i class="fas fa-user-circle"></i> Professional Overview</h2>
+                </div>
+                <div class="bio-content">
+                    <?php 
+                    $bioParagraphs = explode('. ', $member['bio']);
+                    $currentParagraph = '';
+                    $sentenceCount = 0;
+                    
+                    foreach ($bioParagraphs as $sentence) {
+                        if (!empty(trim($sentence))) {
+                            $currentParagraph .= trim($sentence) . '. ';
+                            $sentenceCount++;
+                            
+                            if ($sentenceCount >= 3) {
+                                echo '<p class="bio-paragraph">' . htmlspecialchars($currentParagraph) . '</p>';
+                                $currentParagraph = '';
+                                $sentenceCount = 0;
+                            }
                         }
                     }
-                }
-                
-                // Output any remaining content
-                if (!empty(trim($currentParagraph))) {
-                    echo '<p>' . htmlspecialchars($currentParagraph) . '</p>';
-                }
-                ?>
-            </div>
-
-            <?php if (isset($member['experience'])): ?>
-            <div class="member-experience">
-                <h3><i class="fas fa-briefcase"></i> Experience Highlights</h3>
-                <ul>
-                    <?php foreach ($member['experience'] as $exp): ?>
-                        <li><?php echo htmlspecialchars($exp); ?></li>
-                    <?php endforeach; ?>
-                </ul>
-            </div>
-            <?php endif; ?>
-
-            <?php if (isset($member['expertise'])): ?>
-            <div class="member-expertise">
-                <h3><i class="fas fa-star"></i> Areas of Expertise</h3>
-                <div class="expertise-tags">
-                    <?php foreach ($member['expertise'] as $skill): ?>
-                        <span class="expertise-tag"><?php echo htmlspecialchars($skill); ?></span>
-                    <?php endforeach; ?>
+                    
+                    if (!empty(trim($currentParagraph))) {
+                        echo '<p class="bio-paragraph">' . htmlspecialchars($currentParagraph) . '</p>';
+                    }
+                    ?>
                 </div>
             </div>
-            <?php endif; ?>
-        </div>
 
-        <div class="member-detail-footer">
-            <a href="index.php#contact" class="contact-member-btn">
-                <i class="fas fa-envelope"></i> Get in Touch
-            </a>
+            <div class="two-column-layout">
+                <!-- Experience Section -->
+                <?php if (isset($member['experience'])): ?>
+                <div class="content-section experience-section">
+                    <div class="section-header">
+                        <div class="header-line"></div>
+                        <h2><i class="fas fa-briefcase"></i> Career Journey</h2>
+                    </div>
+                    <div class="experience-timeline">
+                        <?php foreach ($member['experience'] as $index => $exp): ?>
+                        <div class="timeline-item" style="animation-delay: <?php echo $index * 0.1; ?>s">
+                            <div class="timeline-marker">
+                                <div class="marker-dot"></div>
+                                <div class="marker-line"></div>
+                            </div>
+                            <div class="timeline-content">
+                                <div class="timeline-icon">
+                                    <i class="fas fa-building"></i>
+                                </div>
+                                <p><?php echo htmlspecialchars($exp); ?></p>
+                            </div>
+                        </div>
+                        <?php endforeach; ?>
+                    </div>
+                </div>
+                <?php endif; ?>
+
+                <!-- Expertise Section -->
+                <?php if (isset($member['expertise'])): ?>
+                <div class="content-section expertise-section">
+                    <div class="section-header">
+                        <div class="header-line"></div>
+                        <h2><i class="fas fa-star"></i> Core Competencies</h2>
+                    </div>
+                    <div class="expertise-grid">
+                        <?php foreach ($member['expertise'] as $index => $skill): ?>
+                        <div class="expertise-item" style="animation-delay: <?php echo $index * 0.05; ?>s">
+                            <div class="expertise-icon">
+                                <i class="fas fa-check-circle"></i>
+                            </div>
+                            <span><?php echo htmlspecialchars($skill); ?></span>
+                        </div>
+                        <?php endforeach; ?>
+                    </div>
+                </div>
+                <?php endif; ?>
+            </div>
+
+            <!-- Call to Action -->
+            <div class="cta-section">
+                <div class="cta-content">
+                    <div class="cta-icon">
+                        <i class="fas fa-handshake"></i>
+                    </div>
+                    <div class="cta-text">
+                        <h3>Let's Connect</h3>
+                        <p>Interested in discussing business opportunities or learning more about FusionFitNet?</p>
+                    </div>
+                    <a href="index.php#contact" class="cta-button">
+                        <span>Get in Touch</span>
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
         </div>
     </div>
 </section>
