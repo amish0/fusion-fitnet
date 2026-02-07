@@ -188,7 +188,7 @@ file_put_contents($visitor_count_file, $visitor_count);
   </div>
 </section>
 
-
+<!-- 
 <section id="contact" class="contact-section">
   <h2>Get in Touch</h2>
   <p class="contact-subtitle">
@@ -198,7 +198,6 @@ file_put_contents($visitor_count_file, $visitor_count);
 
   <div class="contact-container">
 
-    <!-- Contact Info -->
     <div class="contact-info">
       <div class="info-card">
         <span>📧</span>
@@ -219,7 +218,6 @@ file_put_contents($visitor_count_file, $visitor_count);
       </div>
     </div>
 
-    <!-- Contact Form -->
     <div class="contact-form">
       <form action="contact.php" method="POST">
         <div class="form-group">
@@ -243,17 +241,18 @@ file_put_contents($visitor_count_file, $visitor_count);
 
   </div>
 </section>
+-->
 
 <!-- <div class="sticky-contact">
   <a href="tel:+919147425114" class="call-btn">📞 Call</a>
   <a href="https://wa.me/919147425114" target="_blank" class="wa-btn">💬 WhatsApp</a>
 </div> -->
 
-<section class="mobile-cta">
+<!-- <section class="mobile-cta">
   <h2>Start Your Fitness Journey Today</h2>
   <p>Join Fusion FitNet & transform your body</p>
   <a href="contact-page.php">Get in Touch</a>
-</section>
+</section> -->
 
 <!-- <footer>
   © 2025 Fusion FitNet
