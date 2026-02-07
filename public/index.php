@@ -149,6 +149,45 @@ file_put_contents($visitor_count_file, $visitor_count);
   <div id="team-grid" class="team-grid"></div>
 </section>
 
+<section id="products" class="products-section">
+  <h2>Our Premium Products</h2>
+  <p class="section-subtitle">
+    Discover our range of high-quality nutrition products from Germany, 
+    designed to support your fitness and wellness journey.
+  </p>
+  
+  <div class="products-content">
+    <div class="products-info">
+      <div class="product-highlight">
+        <i class="fas fa-certificate"></i>
+        <h3>Premium Quality</h3>
+        <p>Certified nutrition products from Germany</p>
+      </div>
+      <div class="product-highlight">
+        <i class="fas fa-leaf"></i>
+        <h3>Natural Ingredients</h3>
+        <p>Made with the finest natural components</p>
+      </div>
+      <div class="product-highlight">
+        <i class="fas fa-shield-alt"></i>
+        <h3>Trusted Brand</h3>
+        <p>Backed by years of research and excellence</p>
+      </div>
+    </div>
+    
+    <div class="products-cta">
+      <h3>Ready to Transform Your Health?</h3>
+      <p>Explore our complete range of premium nutrition products</p>
+      <a href="https://21362102.fitline.com" target="_blank" rel="noopener noreferrer" class="shop-now-btn">
+        <i class="fas fa-shopping-bag"></i>
+        <span>Shop Now</span>
+        <i class="fas fa-arrow-right"></i>
+      </a>
+      <p class="shop-note">Visit our official online store</p>
+    </div>
+  </div>
+</section>
+
 
 <section id="contact" class="contact-section">
   <h2>Get in Touch</h2>
