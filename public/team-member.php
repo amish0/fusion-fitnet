@@ -114,6 +114,13 @@ if (!$member) {
                     <h2 class="section-title">Introduction</h2>
                     <div class="section-content">
                         <p><?php echo htmlspecialchars($member['bio']); ?></p>
+                        <div class="product-link-section">
+                            <a href="https://21362102.fitline.com" target="_blank" rel="noopener noreferrer" class="buy-product-btn">
+                                <i class="fas fa-shopping-cart"></i>
+                                <span>Shop Our Premium Products</span>
+                                <i class="fas fa-external-link-alt"></i>
+                            </a>
+                        </div>
                     </div>
                 </div>
 
